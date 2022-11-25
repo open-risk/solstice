@@ -17,6 +17,16 @@ The objective is to provide a performant, easily usable, extensible simulation f
 - Illustrative implementation of toy problems
 - Sample data sets
 
+## Dependencies / Requirements
+
+* c++17
+* cmake
+* conan (tentative)
+* poco++
+* eigen
+* catch2
+* statslib
+
 ## Computational Design
 
 * Solstice is written in C++17
@@ -26,7 +36,12 @@ The objective is to provide a performant, easily usable, extensible simulation f
 
 ## ECS inspired Design
 
-Solstice adopts in its implementation a number of features of recent entity-component-system C++ frameworks. This favors composition over inheritance in certain critical objects. Tuntime polymorphism allows the flexible construction and extension of Solstice to enable the analysis of a variety new models and network structures
+Solstice adopts in its implementation a number of features of recent entity-component-system C++ frameworks. This favors composition over inheritance in certain critical objects. Runtime polymorphism allows the flexible construction and extension of Solstice to enable the analysis of a variety new models and network structures
+
+## Documentation
+
+* [Analytic Framework](manuals/solstice_manual_0.1.pdf)
+
 
 ## Econometric Models
 

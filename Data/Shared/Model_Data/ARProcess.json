@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.5.1",
+  "model_data": {
+    "AR Model Data": {
+      "Initial Conditions": [
+        0,
+        0
+      ],
+      "Offset": 0.0,
+      "Phi": [
+        0.0
+      ]
+    }
+  }
+}

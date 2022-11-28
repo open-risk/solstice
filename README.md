@@ -42,7 +42,6 @@ Solstice adopts in its implementation a number of features of recent entity-comp
 
 * [Analytic Framework](manuals/solstice_manual_0.1.pdf)
 
-
 ## Econometric Models
 
 An indicative list of econometric models and associated financial concepts implemented

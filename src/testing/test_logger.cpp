@@ -15,24 +15,20 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
-#include <Poco/Environment.h>
-#include <Poco/Path.h>
+#include <Poco/ConsoleChannel.h>
+#include "core/simulation.h"
 
-
-TEST_CASE("Runtime environment is ready", "[environment]") {
-
-    // Use SANITY_CHECK = 1 as a compilation parameter to check the basic sanity
-    // of the Solstice environment. This test will simply fetch and print the
-    // environment variables
+TEST_CASE("Solstice logger can be instantiated", "[engine]") {
 
     std::cout << "------------------------------------" << std::endl;
-    std::cout << "OS Name: " << Poco::Environment::osName() << std::endl
-              << "OS Version: " << Poco::Environment::osVersion() << std::endl
-              << "OS Arch: " << Poco::Environment::osArchitecture() << std::endl
-              << "Node Name: " << Poco::Environment::nodeName() << std::endl
-              << "Node ID: " << Poco::Environment::nodeId() << std::endl
-              << "Current Dir: " << Poco::Path::current() << std::endl;
+    Poco::AutoPtr<Poco::ConsoleChannel> pCons(new Poco::ConsoleChannel);
+    Poco::Logger::root().setChannel(pCons);
+    Poco::Logger &logger = Poco::Logger::get("Test_Logger");
+    logger.setLevel(LOG_LEVEL);
+    Poco::LogStream logstream(logger);
+    logstream << "TEST" << std::endl;
 
 }

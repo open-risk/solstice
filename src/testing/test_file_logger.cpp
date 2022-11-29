@@ -15,27 +15,32 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
-#include <filesystem>
+#include <Poco/SimpleFileChannel.h>
 #include "utils/utils.h"
 
-TEST_CASE("Solstice config is accessible", "[config]") {
+TEST_CASE("Solstice file logger can be instantiated", "[logger]") {
 
     std::string path = Poco::Path::current();
-    std::string configuration_dir = "Data/Local/Configurations/";
-    std::string configuration_file = "workflow_data_0_DRYRUN.json";
-    configuration_file = path + "../" + configuration_dir + configuration_file;
-
     std::string log_dir = "Logs/";
     log_dir = path + "../" + log_dir;
     std::string log_file = "configuration.log";
     log_file = log_dir + log_file;
 
-    INFO("Current Path: " << path);
-    INFO("Config Dir: " << configuration_dir);
-    INFO("Config File: " << configuration_file);
-    INFO("Log Dir: " << log_dir);
-    REQUIRE(std::filesystem::exists(configuration_file));
-    REQUIRE(std::filesystem::exists(log_dir));
+    Poco::AutoPtr<Poco::SimpleFileChannel> pChannel(new Poco::SimpleFileChannel);
+    pChannel->setProperty("path", log_file);
+    pChannel->setProperty("rotation", "never");
+    Poco::Logger::root().setChannel(pChannel);
+    Poco::Logger &logger = Poco::Logger::get("Test_Logger");
+    logger.setLevel(LOG_LEVEL);
+    Poco::LogStream logstream(logger);
+    logstream.critical() << "Critical" << std::endl;
+    logstream.error() << "Error" << std::endl;
+    logstream.warning() << "Warning" << std::endl;
+    logstream.notice() << "Notice" << std::endl;
+    logstream.information() << "Information" << std::endl;
+    logstream.debug() << "Debug" << std::endl;
+    logstream.trace() << "Trace" << std::endl;
 }

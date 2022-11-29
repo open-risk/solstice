@@ -159,7 +159,6 @@ set(ENTITY_COMPONENT_FILES
         entity_components/DefaultState.h
         entity_components/LossState.h
         entity_components/CreditRating.h
-        entity_components/CreditContract.h
         entity_components/BusinessModel.h
         entity_components/IFRS9.h
         entity_components/Volatility.h
@@ -204,7 +203,8 @@ set(ALGORITHM_FILES
 
 set(TEST_FILES
         testing/test_sanity.cpp
-        testing/test_logger.cpp
+        testing/test_console_logger.cpp
+        testing/test_file_logger.cpp
         testing/test_config_path.cpp
         testing/test_engine.cpp
         testing/test_runlevel_2.cpp

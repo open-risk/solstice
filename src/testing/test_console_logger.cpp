@@ -15,20 +15,23 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 #include <Poco/ConsoleChannel.h>
-#include "core/simulation.h"
+#include "utils/utils.h"
 
-TEST_CASE("Solstice logger can be instantiated", "[engine]") {
+TEST_CASE("Solstice console logger can be instantiated", "[logger]") {
 
-    std::cout << "------------------------------------" << std::endl;
     Poco::AutoPtr<Poco::ConsoleChannel> pCons(new Poco::ConsoleChannel);
     Poco::Logger::root().setChannel(pCons);
     Poco::Logger &logger = Poco::Logger::get("Test_Logger");
     logger.setLevel(LOG_LEVEL);
     Poco::LogStream logstream(logger);
-    logstream << "TEST" << std::endl;
-
+    logstream.critical() << "Critical" << std::endl;
+    logstream.error() << "Error" << std::endl;
+    logstream.warning() << "Warning" << std::endl;
+    logstream.notice() << "Notice" << std::endl;
+    logstream.information() << "Information" << std::endl;
+    logstream.debug() << "Debug" << std::endl;
+    logstream.trace() << "Trace" << std::endl;
 }

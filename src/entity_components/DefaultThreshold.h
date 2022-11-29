@@ -41,7 +41,7 @@ public:
     [[nodiscard]] Eigen::VectorXd GetA() const {
         return a;
     }
-    void SetA(Eigen::VectorXd X) {
+    void SetA(Eigen::VectorXd &X) {
         a = std::move(X);
     }
     void Print(Poco::LogStream &logstream) {

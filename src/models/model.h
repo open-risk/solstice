@@ -60,6 +60,11 @@ public:
         return m_ModelFamilyID;
     };
 
+    [[nodiscard]] std::string ModelFamilyName(int model_id) {
+        return m_ModelNameMap[model_id];
+    };
+
+
     [[nodiscard]] int RootScenarios() const {
         return m_PortfolioScenarios * m_MacroScenarios;
     };
@@ -118,16 +123,13 @@ public:
 
 private:
 
-    int m_AnalyticTests{};
-
-    std::map<std::string, std::function<void(Network &Po, Scenarios &S, Model_Data &MD, Managers &MA,
-                                             Insights &MR, Poco::LogStream &logstream)>> ModelMap;
+    std::map<int, std::string> m_ModelNameMap {{0, "Test Model"}, {14, "Mobility"}};
 
     int m_ModelFamilyID{};
+    std::string m_ModelFamilyName{};
 
     bool m_DefaultOnly{};
-
-    int m_Markov_Flag{};
+    int m_AnalyticTests{};
 
     int m_ScenarioMethod{};
 

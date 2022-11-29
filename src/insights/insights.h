@@ -53,6 +53,14 @@ public:
         return &m_Result_Components;
     }
 
+    static void reporting_message(int level, const std::string &Message, Poco::LogStream &logstream);
+
+    void Report(Simulation &W, Model &M, Scenarios &S, Model_Data &D, Network &P, Managers &MA,
+                Poco::LogStream &logstream);
+
+    void
+    add_result_object(int choice, Poco::JSON::Array &results_data, Simulation &W, Network &P, Model &M, Model_Data &MD,
+                      Managers &MA, Scenarios &S, Poco::LogStream &logstream);
 
     [[nodiscard]] int ScenarioOutput() const {
         return m_ScenarioOutput;

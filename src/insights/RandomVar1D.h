@@ -18,7 +18,6 @@
 #include "result_component.h"
 #include "utils/random_var.h"
 
-
 class RandomVar1D : public ResultComponent {
 
 public:
@@ -28,6 +27,10 @@ public:
 
     RandomVar GetRV(){
         return R;
+    }
+
+    void SetRV(RandomVar &r) {
+        R = r;
     }
 
 private:

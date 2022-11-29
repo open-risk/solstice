@@ -29,24 +29,22 @@
 Model_Data::Model_Data(Simulation &W, Model &M, Poco::LogStream &logstream) {
 
     int model_family = M.ModelFamilyID();
-    std::string APItoken = W.getToken();
+    logstream.information() << "> Creating Model Components for Model Family " << M.ModelFamilyName(model_family) << std::endl;
 
     switch (model_family) {
         case 0:
-            logstream.information() << "> Model Components for Model Family 0" << std::endl;
+            // Not required
             break;
         case 14:
             m_Model_Components.emplace_back(std::make_shared<ARProcess>(W, M, logstream));
             m_Model_Components.emplace_back(std::make_shared<CorrelationMatrix>(W, M, logstream));
-            logstream.information() << "> Model Components for Model Family 14" << std::endl;
             break;
         default:
             logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
             abort();
     }
 
-    m_Debug = true;
-
+    // m_Debug = true;
 }
 
 

@@ -34,13 +34,20 @@
 
 using namespace Poco;
 
-// assignement operator
+// assignment operator
 RandomVar &RandomVar::operator=(const RandomVar &R) {
     assert(R.size() == this->size()); // check that size matches
-    for (size_t i = 0; i < R.size(); i++) {
-        this->setX(i, R.getX(i));
-        this->setP(i, R.getP(i));
-        this->setC(i, R.getC(i));
+    if (m_type == 0) {
+        for (size_t i = 0; i < R.size(); i++) {
+            this->setX(i, R.getX(i));
+            this->setP(i, R.getP(i));
+            this->setC(i, R.getC(i));
+        }
+    }
+    else if (m_type == 1){
+        for (size_t i = 0; i < R.size(); i++) {
+            this->setS(i, R.getS(i));
+        }
     }
     return (*this);
 };

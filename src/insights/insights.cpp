@@ -23,15 +23,23 @@ Insights::Insights(Simulation &W, Model &M, Network &P, Poco::LogStream &logstre
     this->Deserialize(W.InputString(), logstream);
     logstream.information() << "> Insights Configuration Parsed from Configuration Object" << std::endl;
 
-    if (M.ModelFamilyID() == 0) {
+    int model_family = M.ModelFamilyID();
+    logstream.information() << "> Creating Result Components for Model Family " << M.ModelFamilyName(model_family)
+                            << std::endl;
 
-    } else if (M.ModelFamilyID() == 1) {
-        size_t size = M.CalculationHorizon();
-    } else if (M.ModelFamilyID() == 14) {
-        size_t size = M.MacroScenarios();
-        m_Result_Components.emplace_back(std::make_shared<RandomVar1D>(size));
-    } else {
-        logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
-        abort();
+    size_t size;
+
+    switch (model_family) {
+        case 0:
+            // Not required
+            break;
+        case 14:
+            size = M.MacroScenarios();
+            m_Result_Components.emplace_back(std::make_shared<RandomVar1D>(size));
+            break;
+        default:
+            logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
+            abort();
     }
+
 }

@@ -96,10 +96,6 @@ void Model::Deserialize(const std::string &json, Poco::LogStream &logstream, Sim
         abort();
     }
 
-    Macro_Simulations = m_MacroScenarios * m_BranchScenarios;
-    Loss_Simulations = m_MacroScenarios * m_PortfolioScenarios;
-    Total_Simulations = Loss_Simulations * m_BranchScenarios;
-
     try {
         m_Interval = Model_Configuration->getValue<int>("Interval");
     } catch (...) {
@@ -124,6 +120,10 @@ void Model::Deserialize(const std::string &json, Poco::LogStream &logstream, Sim
         logstream.error() << BOLD(FRED("> ERROR: Problem reading calculation horizon")) << std::endl;
         abort();
     }
+
+    Macro_Simulations = m_MacroScenarios * m_BranchScenarios;
+    Loss_Simulations = m_MacroScenarios * m_PortfolioScenarios;
+    Total_Simulations = Loss_Simulations * m_BranchScenarios;
 
 }
 

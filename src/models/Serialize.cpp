@@ -23,7 +23,8 @@ void Model::Print(Poco::LogStream &logstream) {
     logstream.information() << ">> 2 | Debug Mode: " << m_Debug << std::endl;
     logstream.information() << ">> 2 | Verbosity Level: " << LOG_LEVEL << std::endl;
     logstream.information() << ">> 2 | -------- Model Configuration --------" << std::endl;
-    logstream.information() << ">> 2 | Model Family: " << "\t" << m_ModelFamilyID << std::endl;
+    logstream.information() << ">> 2 | Model Family ID: " << "\t" << m_ModelFamilyID << std::endl;
+    logstream.information() << ">> 2 | Model Family Name: " << "\t" << ModelFamilyName(m_ModelFamilyID) << std::endl;
     logstream.information() << ">> 2 | Number of Idiosyncratic Portfolio Scenarios:" << "\t" << m_PortfolioScenarios << std::endl;
     logstream.information() << ">> 2 | Number of Forward Expectation Scenarios:" << "\t" << m_BranchScenarios << std::endl;
     logstream.information() << ">> 2 | Calculation Horizon:" << "\t" << m_CalculationHorizon << std::endl;

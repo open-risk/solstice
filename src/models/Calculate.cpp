@@ -20,15 +20,14 @@
 void Model::Calculate(Network &V, Scenarios &S, Model_Data &MD, Managers &MA, Insights &MR,
                       Poco::LogStream &logstream) {
 
-    logstream.information() << "> Selecting Model Calculation: " << this->ModelFamilyID() << std::endl;
+
+    logstream.information() << "> Selecting Model Family: " << ModelFamilyName(m_ModelFamilyID) << std::endl;
 
     switch (this->ModelFamilyID()) {
         case 0:
-            logstream.information() << "> Dry Run " << std::endl;
             this->model_test(V, S, MD, MA, MR, logstream);
             break;
         case 14:
-            logstream.information() << "> Running Calculation Mobility" << std::endl;
             this->model_mobility(V, S, MD, MA, MR, logstream);
             break;
         default:
@@ -37,6 +36,6 @@ void Model::Calculate(Network &V, Scenarios &S, Model_Data &MD, Managers &MA, In
     }
 
     logstream.information() << "------------------------------------------------------------------" << std::endl;
-    logstream.information() << "> Finished Model Calculations" << std::endl;
+    logstream.information() << "> Finished Model Calculations of " << ModelFamilyName(m_ModelFamilyID) << std::endl;
 
 }

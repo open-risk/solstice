@@ -45,6 +45,13 @@ Model::model_mobility(Network &V,
     }
     logstream.information() << "....................................." << std::endl;
 
+    /**
+     *
+     *  INITIALIZATION
+     *
+     */
+
+
     double dt = 1.0;
 
     Eigen::ArrayXd X;
@@ -52,15 +59,9 @@ Model::model_mobility(Network &V,
     Eigen::ArrayXd Y;
     Eigen::ArrayXd VY;
     Eigen::ArrayXd sigma;
-    size_t size;
-
-    RandomVar1D Xdist(m_MacroScenarios);
 
     for (auto &et: *V.GetEntityList()) {
-
         if (et->GetName() == "Mobile Entity") {
-            size = et->GetSize();
-
             auto *ME = dynamic_cast<MobileEntity *>(et.get());
             X = ME->DP().GetX();
             Y = ME->DP().GetY();
@@ -72,14 +73,26 @@ Model::model_mobility(Network &V,
 
     /**
      *
-     *    SYSTEM INVOCATION
+     *  SYSTEM INVOCATION
      *
      */
+    RandomVar R(m_MacroScenarios, 1);
 
-    for (int s = 0; s < m_MacroScenarios; s++) {
+    for (int scenarios = 0; scenarios < m_MacroScenarios; scenarios++) {
         for (int steps = 0; steps < m_CalculationHorizon; steps++) {
             compute_movement(X, VX, Y, VY, sigma, dt, logstream);
         }
+        R.setS(scenarios, X[0]);
     }
 
+    /**
+     *  RESULT STORAGE
+     */
+    for (auto &rc: *MR.GetResultComponent()) {
+        logstream.information() << rc->GetName() << std::endl;
+        if (rc->GetName() == "Random Var 1D") {
+            auto *RV1D = dynamic_cast<RandomVar1D *>(rc.get());
+            RV1D->SetRV(R);
+        }
+    }
 }

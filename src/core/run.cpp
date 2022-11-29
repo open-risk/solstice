@@ -80,7 +80,7 @@ int Simulation::run(Poco::LogStream &logstream) {
     // Model Calculation (Model Family Choice)
     // Variations of Optional Scenarios: with Managers, Scenarios etc
     step += 1;
-    step_string = "Start Model Calculation in Model Family " + std::to_string(MC.ModelFamilyID()) ;
+    step_string = "Start Model Calculation in Model Family " + MC.ModelFamilyName(MC.ModelFamilyID()) ;
     MC.Calculate(V, S, MD, MA, MR, logstream);
     announce_level(step, step_string, this->VerboseLevel(), logstream, m_user_operating_mode);
 

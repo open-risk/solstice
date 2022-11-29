@@ -186,6 +186,8 @@ set(INSIGHT_FILES
         insights/insights.h
         insights/insights.cpp
         insights/DeserializeInsights.cpp
+        insights/Report.cpp
+        insights/add_result_object.cpp
         insights/result_component.h
         insights/RandomVar1D.h
         )
@@ -213,7 +215,8 @@ set(TEST_FILES
         testing/test_runlevel_5.cpp
         testing/test_runlevel_6.cpp
         testing/test_runlevel_7.cpp
-        testing/test_model.cpp
+        testing/test_runlevel_9.cpp
+        testing/test_runlevel_10.cpp
         )
 
 set(SOURCE_FILES ${CORE_FILES})

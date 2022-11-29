@@ -67,6 +67,12 @@ public:
         }
     }
 
+    explicit RandomVar(Eigen::ArrayXd &x) {
+        m_type = 1;
+        m_size = x.size();
+        m_S = x;
+    }
+
     // overload assignment operator
     RandomVar &operator=(const RandomVar &R);
 

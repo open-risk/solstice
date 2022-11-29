@@ -20,7 +20,6 @@
 #include <Poco/ConsoleChannel.h>
 #include "core/simulation.h"
 #include "models/model.h"
-#include "insights/insights.h"
 
 TEST_CASE("Solstice model calculation", "[model]") {
 

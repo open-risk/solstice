@@ -28,7 +28,6 @@
 #include <cassert>
 #include <fstream>
 
-
 #include <Poco/JSON/Parser.h>
 #include "random_var.h"
 
@@ -56,25 +55,56 @@ RandomVar &RandomVar::operator=(const RandomVar &R) {
  * Sort the sampling data
  */
 void RandomVar::Sort() {
-    std::sort(m_S.begin(), m_S.end());
+    if (m_type == 1) {
+        std::sort(m_S.begin(), m_S.end());
+    }
+}
+
+/**
+ * Create a histogram of the sampling data
+ * This is a rough-and-ready approach for data visualization
+ * Bins are assumed equal and represented by their mid-point values
+ */
+RandomVar RandomVar::Histogram(int Bins) {
+    RandomVar H(Bins+1,0);
+    if (m_type == 1) {
+        std::sort(m_S.begin(), m_S.end());
+        double min_value = m_S[0];
+        double max_value = m_S[m_S.size()-1];
+        double bin_width = (max_value - min_value)/ (double) Bins;
+        double sample_p = 1.0 / m_size;
+        for (int i = 0; i < Bins + 1; i++) {
+            H.setX(i, min_value + bin_width * (double) i / 2.0);
+            H.setP(i, 0.0);
+        }
+        for (int j = 0; j < m_size; j++) {
+            int observation_bin = (int) ( (m_S[j] - min_value) / bin_width );
+            H.addP(observation_bin, sample_p);
+        }
+    }
+    return H;
 }
 
 /**
  * Compute the cumulative distribution function
  */
 void RandomVar::Cumulative() {
-    m_C[0] = m_P[0]; // starting value
-    for (size_t i = 1; i < m_P.size(); i++)
-        m_C[i] = m_C[i - 1] + m_P[i];  // add probability mass
+    if (m_type == 0) {
+        m_C[0] = m_P[0]; // starting value
+        for (size_t i = 1; i < m_P.size(); i++)
+            m_C[i] = m_C[i - 1] + m_P[i];  // add probability mass
+    }
 }
 
 /**
  * Compute the probability density
  */
 void RandomVar::Probability() {
-    m_P[0] = m_C[0];  // starting valued
-    for (size_t i = 1; i < m_P.size(); i++)
-        m_P[i] = m_C[i] - m_C[i - 1];  // incremental probability mass
+    if (m_type == 1){
+        m_P[0] = m_C[0];  // starting value
+        for (size_t i = 1; i < m_P.size(); i++)
+            m_P[i] = m_C[i] - m_C[i - 1];  // incremental probability mass
+    }
 }
 
 /**

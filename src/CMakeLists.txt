@@ -133,6 +133,7 @@ set(NETWORK_FILES
         networks/network.cpp
         networks/DeserializeNetwork.cpp
         networks/ReadFromFileNetwork.cpp
+        networks/PrintEntities.cpp
         )
 
 set(ENTITY_TYPE_FILES

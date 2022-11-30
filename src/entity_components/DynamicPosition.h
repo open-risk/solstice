@@ -93,7 +93,7 @@ public:
         }
 
         if (LOG_LEVEL >= 2) {
-            logstream.information() << ">> 5 | Successfully Initialized Portfolio Size: " << file_size << std::endl;
+            logstream.information() << ">> 5 | Successfully Initialized Network Size: " << file_size << std::endl;
         }
 
     }
@@ -145,8 +145,12 @@ public:
     void Print(Poco::LogStream &logstream) {
         logstream.information() << m_component_Name << std::endl;
         logstream.information() << "----------------------------" << std::endl;
-        for (int k = 0; k < m_entity_size; k++)
-            logstream.information() << k << " " << m_entity_X[k] << std::endl;
+        for (int i = 0; i < m_entity_size; i++) {
+            logstream.information() << i << " X " << m_entity_X[i] << std::endl;
+            logstream.information() << i << " Y " << m_entity_Y[i] << std::endl;
+            logstream.information() << i << " VX " << m_entity_VX[i] << std::endl;
+            logstream.information() << i << " VY " << m_entity_VY[i] << std::endl;
+        }
     }
 
 private:

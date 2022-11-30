@@ -30,10 +30,11 @@ public:
 
     };
 
-    explicit MobileEntity(Simulation &W, Model &M, Poco::LogStream &logstream) :
+    MobileEntity(Simulation &W, Model &M, Poco::LogStream &logstream) :
             GenericEntity("Mobile Entity"),
             m_DP(W, M, logstream),
             m_sigma(W, M, logstream) {
+        m_Pool_Size = m_DP.GetSize();
     };
 
     DynamicPosition DP() {

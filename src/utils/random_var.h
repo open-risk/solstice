@@ -136,6 +136,10 @@ public:
         m_C[index] = arg;
     };
 
+    void addP(int index, double arg) {
+        m_P[index] += arg;
+    };
+
     void setX(int index, double arg) {
         m_X[index] = arg;
     };
@@ -146,6 +150,8 @@ public:
 
     void Sort();
 
+    RandomVar Histogram(int Bins);
+
     void Cumulative();
 
     void Probability();
@@ -155,14 +161,17 @@ public:
     void Print();
 
 private:
-    // 0 Type: exact representation
-    // 1 Type: sampling representation
+    // 0 Type: exact representation (discrete probabilities view)
+    // 1 Type: sampling representation (distribution sampling view)
     int m_type;
     int m_size;
+    // 0 Type Storage:
     Eigen::ArrayXd m_P{}; // storage of probability mass
     Eigen::ArrayXd m_C{}; // storage of cumulative probability
     Eigen::ArrayXd m_X{}; // storage of discrete values (random variable range)
+    // 1 Type Storage:
     Eigen::ArrayXd m_S{}; // storage of sampling data from simulation experiments
+
 };
 
 #endif

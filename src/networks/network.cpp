@@ -42,4 +42,6 @@ Network::Network(Simulation &W, Model &M, Poco::LogStream &logstream) {
 
     };
 
+    PrintEntities(2, logstream);
+
 }

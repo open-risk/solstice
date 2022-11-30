@@ -36,7 +36,7 @@ void Simulation::Serialize(Poco::LogStream &logstream) {
     logstream.information() << ">> 1 | -------- Input Set  ---------" << std::endl;
     logstream.information() << ">> 1 | Liability Data Mode: " << m_LiabilityDataMode << std::endl;
     logstream.information() << ">> 1 | Scenario Data Mode: " << m_ScenarioDataMode << std::endl;
-    logstream.information() << ">> 1 | Portfolio URL: " << m_PortfolioURL << std::endl;
+    logstream.information() << ">> 1 | Network URL: " << m_PortfolioURL << std::endl;
     logstream.information() << ">> 1 | Liabilities URL: " << m_LiabilitiesURL << std::endl;
     logstream.information() << ">> 1 | Correlation Matrix URL: " << m_CorrelationURL << std::endl;
     logstream.information() << ">> 1 | Adjacency Matrix URL: " << m_AdjacencyURL << std::endl;

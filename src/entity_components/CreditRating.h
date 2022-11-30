@@ -85,7 +85,7 @@ public:
         }
 
         if (LOG_LEVEL >= 2) {
-            logstream.information() << ">> 5 | Successfully Initialized Portfolio Size: " << file_size << std::endl;
+            logstream.information() << ">> 5 | Successfully Initialized Network Size: " << file_size << std::endl;
         }
 
     }

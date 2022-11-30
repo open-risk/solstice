@@ -20,7 +20,7 @@
 void Network::PrintEntities(int Level, Poco::LogStream &logstream) {
 
     if (Level >= 1) {
-        logstream.information() << ">> 5 | -------- Portfolio Data --------" << std::endl;
+        logstream.information() << ">> 5 | -------- Network Data --------" << std::endl;
     }
 
     for (auto &pool: m_Entity_List) {
@@ -28,6 +28,5 @@ void Network::PrintEntities(int Level, Poco::LogStream &logstream) {
         logstream.information() << pool->GetSize() << std::endl;
         pool->Print(logstream);
     }
-
 
 }

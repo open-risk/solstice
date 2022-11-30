@@ -45,8 +45,8 @@ public:
         a = std::move(X);
     }
     void Print(Poco::LogStream &logstream) {
-        for (int k = 0; k < m_entity_size; k++)
-            logstream.information() << k << " " << a[k] << std::endl;
+        for (int i = 0; i < m_entity_size; i++)
+            logstream.information() << i << " " << a[i] << std::endl;
     }
 
 private:

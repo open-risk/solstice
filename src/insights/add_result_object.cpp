@@ -61,9 +61,18 @@ Insights::add_result_object(int choice, Poco::JSON::Array &results_data, Simulat
                     RV = ER->GetRV();
                 }
             }
+            RandomVar H = RV.Histogram(10);
 
             histogram1D.clear();
-            histogram1D.set("key", 1);
+            Poco::JSON::Array x_array;
+            Poco::JSON::Array y_array;
+
+            for (int i = 0; i < H.size(); i++) {
+                x_array.add(H.getX(i));
+                y_array.add(H.getP(i));
+            }
+            histogram1D.set("x", x_array);
+            histogram1D.set("y", y_array);
 
             result_object.set("Data", histogram1D);
             result_object.set("Type", "1D Histogram");

@@ -30,27 +30,22 @@ Model::model_mobility(Network &V,
     logstream.information() << ">> 8 | Starting Mobility Calculation" << std::endl;
 
     for (auto &pool: *V.GetEntityList()) {
+        logstream.information() << ">> 8 | Found Total Entities: " << V.GetEntityCount() << std::endl;
         logstream.information() << pool->GetName() << std::endl;
         logstream.information() << pool->GetSize() << std::endl;
-        if (pool->GetName() == "Mobile Entity") {
+        if (pool->GetName() == ">> 8 | Mobile Entities: ") {
             auto *ME = dynamic_cast<MobileEntity *>(pool.get());
             for (size_t i = 0; i < pool->GetSize(); i++) {
-                logstream.information() << "START POSITION : " << ME->DP().GetX(i) << std::endl;
+                logstream.information() << ">> 8 | START X POSITIONS : " << ME->DP().GetX(i) << std::endl;
             }
         }
     }
-    logstream.information() << ">> 8 | Found Total Entities: " << V.GetEntityCount() << std::endl;
-    for (auto &pool: *V.GetEntityList()) {
-        logstream.information() << ">> 8 | " << pool->GetName() << std::endl;
-    }
-    logstream.information() << "....................................." << std::endl;
 
     /**
      *
      *  INITIALIZATION
      *
      */
-
 
     double dt = 1.0;
 
@@ -77,11 +72,12 @@ Model::model_mobility(Network &V,
      *
      */
     RandomVar R(m_MacroScenarios, 1);
-
+//    std::cout << X[0] << "  "  << VX[0] << std::endl;
     for (int scenarios = 0; scenarios < m_MacroScenarios; scenarios++) {
         for (int steps = 0; steps < m_CalculationHorizon; steps++) {
             compute_movement(X, VX, Y, VY, sigma, dt, logstream);
         }
+//        std::cout << X[0] << "  "  << VX[0] << std::endl;
         R.setS(scenarios, X[0]);
     }
 

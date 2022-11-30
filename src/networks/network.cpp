@@ -29,7 +29,8 @@ Network::Network(Simulation &W, Model &M, Poco::LogStream &logstream) {
             break;
         case 5:
             m_NetworkName = "Vehicles";
-            m_Entity_List.emplace_back(std::make_shared<MobileEntity>(1));
+            // m_Entity_List.emplace_back(std::make_shared<MobileEntity>(1));
+            m_Entity_List.emplace_back(std::make_shared<MobileEntity>(W, M, logstream));
             break;
         default:
             logstream.error() << "ERROR IN NETWORK SHAPE!" << std::endl;

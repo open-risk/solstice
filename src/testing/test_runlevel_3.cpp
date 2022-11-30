@@ -21,7 +21,7 @@
 #include "core/simulation.h"
 #include "models/model.h"
 
-TEST_CASE("Solstice run level 3", "[runlevel3]") {
+TEST_CASE("Solstice run level 3 (Model Data Config)", "[runlevel3]") {
 
     Poco::AutoPtr<Poco::ConsoleChannel> pCons(new Poco::ConsoleChannel);
     Poco::Logger::root().setChannel(pCons);

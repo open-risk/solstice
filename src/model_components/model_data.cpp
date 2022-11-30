@@ -16,10 +16,10 @@
 */
 
 #include "model_data.h"
+#include "ARProcess.h"
 #include "FactorLoadings.h"
 #include "CorrelationMatrix.h"
 #include "TransitionMatrix.h"
-#include "ARProcess.h"
 #include "CreditCurve.h"
 #include "HazardRate.h"
 #include "TransitionThresholds.h"

@@ -80,8 +80,6 @@ public:
 
         Resize(file_size, logstream);
 
-        // Read Individual data rows
-
         try {
             if (LOG_LEVEL >= 2) {
                 logstream.information() << ">> 5 | Reading Entity Data: " << file_size << std::endl;

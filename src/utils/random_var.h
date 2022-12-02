@@ -31,13 +31,13 @@
 #include <Eigen/Dense>
 
 class RandomVar {
-    friend std::ostream &operator<<(std::ostream &os, const RandomVar &R);
+    friend std::ostream &operator<<(std::ostream &os, RandomVar &R);
 
 public:
 
     // constructor with size and empirical distribution type
-    // Type 0 -> histogram
-    // Type 1 -> samples
+    // Type 0 -> histogram storage
+    // Type 1 -> sample storage
 
     RandomVar(size_t S, int type) {
         if (type == 0) {
@@ -54,6 +54,9 @@ public:
             std::cout << "Error in random variable representation type" << std::endl;
         }
     }
+
+    // constructor directly from existing data
+    // TODO generalize data type to accommodate different accuracy requirements
 
     RandomVar(Eigen::ArrayXd x, Eigen::ArrayXd p, const int size) {
         m_type = 0;
@@ -73,7 +76,6 @@ public:
         m_S = x;
     }
 
-    // overload assignment operator
     RandomVar &operator=(const RandomVar &R);
 
     [[nodiscard]] size_t size() const {
@@ -100,33 +102,33 @@ public:
         return m_S[index];
     };
 
-    [[nodiscard]] double Average() const;
+    [[nodiscard]] double Average();
 
-    [[nodiscard]] double Mean() const;
+    [[nodiscard]] double Mean();
 
-    [[nodiscard]] double Median() const;
+    [[nodiscard]] double Median();
 
-    [[nodiscard]] double Variance() const;
+    [[nodiscard]] double Variance();
 
-    [[nodiscard]] double Vol() const;
+    [[nodiscard]] double Vol();
 
-    [[nodiscard]] double StandardDeviation() const;
+    [[nodiscard]] double StandardDeviation();
 
-    [[nodiscard]] double Kurtosis() const;
+    [[nodiscard]] double Kurtosis();
 
-    [[nodiscard]] double Skeweness() const;
+    [[nodiscard]] double Skeweness();
 
-    [[nodiscard]] double ExpectedShortFall(double alpha) const;
+    [[nodiscard]] double ExpectedShortFall(double alpha);
 
-    [[nodiscard]] double ExceedanceProbability(int index) const;
+    [[nodiscard]] double ExceedanceProbability(int index);
 
-    [[nodiscard]] double MeanExcess(int index) const;
+    [[nodiscard]] double MeanExcess(int index);
 
-    [[nodiscard]] double Quantile(double alpha) const;
+    [[nodiscard]] double Quantile(double alpha);
 
-    [[nodiscard]] double VaR(double alpha) const;
+    [[nodiscard]] double VaR(double alpha);
 
-    [[nodiscard]] int Quantile_Index(double alpha) const;
+    [[nodiscard]] int Quantile_Index(double alpha);
 
     void setP(int index, double arg) {
         m_P[index] = arg;
@@ -156,7 +158,7 @@ public:
 
     void Probability();
 
-    void ReadFromJSON(const std::string &filename);
+    void ReadFromJSON(std::string &filename);
 
     void Print();
 
@@ -164,11 +166,16 @@ private:
     // 0 Type: exact representation (discrete probabilities view)
     // 1 Type: sampling representation (distribution sampling view)
     int m_type;
+
     int m_size;
+
+    bool m_sorted = false;
+
     // 0 Type Storage:
     Eigen::ArrayXd m_P{}; // storage of probability mass
     Eigen::ArrayXd m_C{}; // storage of cumulative probability
     Eigen::ArrayXd m_X{}; // storage of discrete values (random variable range)
+
     // 1 Type Storage:
     Eigen::ArrayXd m_S{}; // storage of sampling data from simulation experiments
 

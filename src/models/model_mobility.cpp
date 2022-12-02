@@ -15,6 +15,8 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "stats.hpp"
+
 #include "model.h"
 #include "entity_types/MobileEntity.h"
 #include "insights/RandomVar1D.h"
@@ -28,6 +30,8 @@ Model::model_mobility(Network &V,
                       Poco::LogStream &logstream) {
 
     logstream.information() << ">> 8 | Starting Mobility Calculation" << std::endl;
+
+    stats::rand_engine_t engine(123);
 
     for (auto &pool: *V.GetEntityList()) {
         logstream.information() << ">> 8 | Found Total Entities: " << V.GetEntityCount() << std::endl;
@@ -72,12 +76,11 @@ Model::model_mobility(Network &V,
      *
      */
     RandomVar R(m_MacroScenarios, 1);
-//    std::cout << X[0] << "  "  << VX[0] << std::endl;
+
     for (int scenarios = 0; scenarios < m_MacroScenarios; scenarios++) {
         for (int steps = 0; steps < m_CalculationHorizon; steps++) {
-            compute_movement(X, VX, Y, VY, sigma, dt, logstream);
+            compute_movement(X, VX, Y, VY, sigma, dt, engine, logstream);
         }
-//        std::cout << X[0] << "  "  << VX[0] << std::endl;
         R.setS(scenarios, X[0]);
     }
 

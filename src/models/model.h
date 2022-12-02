@@ -20,6 +20,8 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "stats.hpp"
+
 #include "core/simulation.h"
 #include "networks/network.h"
 #include "scenarios/scenarios.h"
@@ -54,7 +56,7 @@ public:
     model_test(Network &Po, Scenarios &S, Model_Data &MD, Managers &MA, Insights &MR, Poco::LogStream &logstream);
 
     void compute_movement(Eigen::ArrayXd &X, Eigen::ArrayXd &VX, Eigen::ArrayXd &Y, Eigen::ArrayXd &VY,
-                          Eigen::ArrayXd &sigma, double dt, Poco::LogStream &logstream);
+                          Eigen::ArrayXd &sigma, double dt, stats::rand_engine_t &engine, Poco::LogStream &logstream);
 
     [[nodiscard]] int ModelFamilyID() const {
         return m_ModelFamilyID;

@@ -23,15 +23,50 @@ void Model::compute_movement(Eigen::ArrayXd &X,
                              Eigen::ArrayXd &VY,
                              Eigen::ArrayXd &sigma,
                              double dt,
+                             stats::rand_engine_t &engine,
                              Poco::LogStream &logstream) {
 
-    size_t size = X.size();
-    Eigen::ArrayXd DBX = Eigen::ArrayXd::Random(size);
-    Eigen::ArrayXd DBY = Eigen::ArrayXd::Random(size);
+    /**
+     * System Level Flags
+     */
 
-    X += sigma * VX * dt;
-    Y += sigma * VY * dt;
-    VX += DBX;
-    VY += DBY;
+    // 0-> Gaussian Noise
+    // 1-> Wiener Process (Random Walk)
+    // 2-> Ornstein-Uhlenbeck process (Brownian Motion with Stochastic Velocity)
+    int ProcessType = 0;
+
+    // 0-> Uniform (-1, 1)
+    // 1-> Normal
+    int DistributionType = 1;
+
+    size_t size = X.size();
+
+    Eigen::ArrayXd DBX;
+    Eigen::ArrayXd DBY;
+
+    if (DistributionType == 0) {
+        DBX = Eigen::ArrayXd::Random(size);
+        DBY = Eigen::ArrayXd::Random(size);
+    } else if (DistributionType == 1) {
+        DBX.resize(size);
+        DBY.resize(size);
+        for (int i = 0; i < size; i++) {
+            DBX[i] = stats::rnorm(0.0, 1.0, engine);
+            DBY[i] = stats::rnorm(0.0, 1.0, engine);
+        }
+    }
+
+    if (ProcessType == 0) {
+        X = DBX;
+        Y = DBY;
+    } else if (ProcessType == 1) {
+        X += DBX;
+        Y += DBY;
+    } else if (ProcessType == 2) {
+        X += sigma * VX * dt;
+        Y += sigma * VY * dt;
+        VX += DBX;
+        VY += DBY;
+    }
 }
 

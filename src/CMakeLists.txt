@@ -94,6 +94,7 @@ set(MODEL_FILES
         models/Serialize.cpp
         models/model_test.cpp
         models/model_mobility.cpp
+        models/model_macro.cpp
         )
 
 set(MODEL_COMPONENT_FILES
@@ -117,6 +118,7 @@ set(MODEL_COMPONENT_FILES
 
 set(SYSTEM_FILES
         systems/compute_movement.cpp
+        systems/compute_simulated_multifactor_scenarios.cpp
 )
 
 set(MANAGER_FILES
@@ -210,14 +212,15 @@ set(TEST_FILES
         testing/test_file_logger.cpp
         testing/test_config_path.cpp
         testing/test_engine.cpp
-        testing/test_runlevel_2.cpp
-        testing/test_runlevel_3.cpp
-        testing/test_runlevel_4.cpp
-        testing/test_runlevel_5.cpp
-        testing/test_runlevel_6.cpp
-        testing/test_runlevel_7.cpp
-        testing/test_runlevel_9.cpp
-        testing/test_runlevel_10.cpp
+        testing/test_macro.cpp
+        testing/run_levels/test_runlevel_2.cpp
+        testing/run_levels/test_runlevel_3.cpp
+        testing/run_levels/test_runlevel_4.cpp
+        testing/run_levels/test_runlevel_5.cpp
+        testing/run_levels/test_runlevel_6.cpp
+        testing/run_levels/test_runlevel_7.cpp
+        testing/run_levels/test_runlevel_9.cpp
+        testing/run_levels/test_runlevel_10.cpp
         )
 
 set(SOURCE_FILES ${CORE_FILES})

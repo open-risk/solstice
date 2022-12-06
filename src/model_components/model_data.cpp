@@ -35,12 +35,16 @@ Model_Data::Model_Data(Simulation &W, Model &M, Poco::LogStream &logstream) {
         case 0:
             // Not required
             break;
+        case 9:
+            m_Model_Components.emplace_back(std::make_shared<ARProcess>(W, M, logstream));
+            m_Model_Components.emplace_back(std::make_shared<CorrelationMatrix>(W, M, logstream));
+            break;
         case 14:
             m_Model_Components.emplace_back(std::make_shared<ARProcess>(W, M, logstream));
             m_Model_Components.emplace_back(std::make_shared<CorrelationMatrix>(W, M, logstream));
             break;
         default:
-            logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
+            logstream.error() << "> ERROR: Model_Data::Model_Data, Invalid Model Family" << std::endl;
             abort();
     }
 

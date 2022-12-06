@@ -33,12 +33,16 @@ Insights::Insights(Simulation &W, Model &M, Network &P, Poco::LogStream &logstre
         case 0:
             // Not required
             break;
+        case 9:
+            size = M.MacroScenarios();
+            m_Result_Components.emplace_back(std::make_shared<RandomVar1D>(size));
+            break;
         case 14:
             size = M.MacroScenarios();
             m_Result_Components.emplace_back(std::make_shared<RandomVar1D>(size));
             break;
         default:
-            logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
+            logstream.error() << "> ERROR: Insights::Insights, Invalid Model Family" << std::endl;
             abort();
     }
 

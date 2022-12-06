@@ -21,17 +21,20 @@ void Model::Calculate(Network &V, Scenarios &S, Model_Data &MD, Managers &MA, In
                       Poco::LogStream &logstream) {
 
 
-    logstream.information() << "> Selecting Model Family: " << ModelFamilyName(m_ModelFamilyID) << std::endl;
+    logstream.information() << "> Calculating from Model Family: " << ModelFamilyName(m_ModelFamilyID) << std::endl;
 
     switch (this->ModelFamilyID()) {
         case 0:
             this->model_test(V, S, MD, MA, MR, logstream);
             break;
+        case 9:
+            this->model_macro(V, S, MD, MA, MR, logstream);
+            break;
         case 14:
             this->model_mobility(V, S, MD, MA, MR, logstream);
             break;
         default:
-            logstream.error() << "> ERROR: Invalid Model Family" << std::endl;
+            logstream.error() << "> ERROR: Model::Calculate, Invalid Model Family" << std::endl;
             abort();
     }
 

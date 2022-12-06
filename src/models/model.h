@@ -50,6 +50,9 @@ public:
     Calculate(Network &V, Scenarios &S, Model_Data &MD, Managers &MA, Insights &MR, Poco::LogStream &logstream);
 
     void
+    model_macro(Network &Po, Scenarios &S, Model_Data &MD, Managers &MA, Insights &MR, Poco::LogStream &logstream);
+
+    void
     model_mobility(Network &Po, Scenarios &S, Model_Data &MD, Managers &MA, Insights &MR, Poco::LogStream &logstream);
 
     void
@@ -57,6 +60,9 @@ public:
 
     void compute_movement(Eigen::ArrayXd &X, Eigen::ArrayXd &VX, Eigen::ArrayXd &Y, Eigen::ArrayXd &VY,
                           Eigen::ArrayXd &sigma, double dt, stats::rand_engine_t &engine, Poco::LogStream &logstream);
+
+    void compute_simulated_multifactor_scenarios(int scenario, Eigen::MatrixXd &L, Eigen::Tensor<double, 3> &z3, int CorrelationMethod, int Factors,
+                                                 Poco::LogStream &logstream);
 
     [[nodiscard]] int ModelFamilyID() const {
         return m_ModelFamilyID;
@@ -125,7 +131,7 @@ public:
 
 private:
 
-    std::map<int, std::string> m_ModelNameMap {{0, "Test Model"}, {14, "Mobility"}};
+    std::map<int, std::string> m_ModelNameMap {{0, "Test Model"}, {9, "Macro"}, {14, "Mobility"}};
 
     int m_ModelFamilyID{};
     std::string m_ModelFamilyName{};

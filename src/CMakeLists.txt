@@ -22,18 +22,14 @@ set(PROJECT_DESCRIPTION "Solstice is a simulation framework of economic networks
 
 cmake_minimum_required(VERSION 3.19)
 
-#
-# SOLSTICE BUILD
-#
 # project name and version
 project(solstice)
-
 set(SOLSTICE_VERSION_MAJOR 0)
 set(SOLSTICE_VERSION_MINOR 5)
 set(SOLSTICE_VERSION_PATCH 0)
 set(SOLSTICE_VERSION ${SOLSTICE_VERSION_MAJOR}.${SOLSTICE_VERSION_MINOR}.${SOLSTICE_VERSION_PATCH})
 
-# compiler choices
+# compiler choices. c++17 is required
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -std=c++17)
 add_definitions("-std=c++17")
@@ -43,13 +39,13 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG)
 
-# VALGRIND
+# VALGRIND (optional)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
 
-# GPROF
+# GPROF (optional)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 
-# OPENMP
+# OPENMP  (optional)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 
 # Solstice http protocol for API exchanges

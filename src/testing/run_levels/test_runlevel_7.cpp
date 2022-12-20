@@ -45,5 +45,5 @@ TEST_CASE("Solstice run level 7", "[runlevel7]") {
     Managers MA(engine, MC, logstream);
     Insights MR(engine, MC, V, logstream);
     std::cout << "DONE" << std::endl;
-    INFO("Test");
+//    INFO("Test");
 }

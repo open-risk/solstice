@@ -44,7 +44,7 @@ void EntityComponent::ReadFromFile(const std::string &filename, Simulation &W, M
         this->Deserialize(json, W, M, logstream);
 
     } else {
-        logstream.error() << BOLD(FRED("> ERROR: File does not exist")) << std::endl;
+        logstream.error() << BOLD(FRED("> ERROR: Entity Component File does not exist")) << std::endl;
         abort();
     }
 };

@@ -45,7 +45,7 @@ void Simulation::ReadFromFile(const std::string &filename, Poco::LogStream &logs
         this->Deserialize(json, logstream);
 
     } else {
-        logstream.error() << BOLD(FRED("> ERROR: File does not exist")) << std::endl;
+        logstream.error() << BOLD(FRED("> ERROR: Simulation File does not exist")) << std::endl;
         abort();
     }
 }

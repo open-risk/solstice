@@ -43,7 +43,7 @@ void ModelComponent::ReadFromFile(const std::string &filename, Simulation &W, Mo
         this->Deserialize(json, W, M, logstream);
 
     } else {
-        logstream.error() << BOLD(FRED("> ERROR: File does not exist: ")) << filename << std::endl;
+        logstream.error() << BOLD(FRED("> ERROR: Model Component File does not exist: ")) << filename << std::endl;
         abort();
     }
 };

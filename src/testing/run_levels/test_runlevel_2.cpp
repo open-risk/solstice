@@ -39,6 +39,6 @@ TEST_CASE("Solstice run level 2 (Model Config)", "[model]") {
     Simulation engine(OPERATING_MODE, logstream, reinterpret_cast<char **>(argv));
     Model MC(engine, logstream);
     std::cout << "DONE" << std::endl;
-    INFO("Test");
+//    INFO("Test");
 
 }

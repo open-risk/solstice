@@ -50,5 +50,5 @@ TEST_CASE("Solstice Macro Simulation", "[model]") {
     REQUIRE(std::filesystem::exists(results_url));
     MR.Report(engine, MC, S, MD, V, MA, logstream);
     std::cout << "DONE" << std::endl;
-    INFO("Test");
+//    INFO("Test");
 }

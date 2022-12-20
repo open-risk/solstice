@@ -45,7 +45,7 @@ void Managers::ReadFromFile(std::string filename, Simulation &W, Model &M, Poco:
         this->Deserialize(json, W, logstream);
 
     } else {
-        logstream.error() << BOLD(FRED("> ERROR: File does not exist")) << std::endl;
+        logstream.error() << BOLD(FRED("> ERROR: Manager File does not exist")) << std::endl;
         abort();
     }
 

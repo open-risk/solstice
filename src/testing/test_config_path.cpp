@@ -23,19 +23,26 @@
 TEST_CASE("Solstice config is accessible", "[config]") {
 
     std::string path = Poco::Path::current();
+    Poco::Path root_path(path);
+    root_path.makeParent();
+
+    // std::string path = Poco::Path::parent();
     std::string configuration_dir = "Data/Local/Configurations/";
     std::string configuration_file = "workflow_data_0_DRYRUN.json";
-    configuration_file = path + "../" + configuration_dir + configuration_file;
-
+    // configuration_file = path + "../" + configuration_dir + configuration_file;
+    configuration_file = root_path.toString() + configuration_dir + configuration_file;
+    std::cout << configuration_file << std::endl;
     std::string log_dir = "Logs/";
-    log_dir = path + "../" + log_dir;
+    log_dir = root_path.toString() + log_dir;
     std::string log_file = "configuration.log";
     log_file = log_dir + log_file;
+    std::cout << log_dir << std::endl;
+    std::cout << log_file << std::endl;
 
-    INFO("Current Path: " << path);
-    INFO("Config Dir: " << configuration_dir);
-    INFO("Config File: " << configuration_file);
-    INFO("Log Dir: " << log_dir);
+//    INFO("Config Dir: " << configuration_dir);
+//    INFO("Config File: " << configuration_file);
+//    INFO("Current Path: " << path);
+//    INFO("Log Dir: " << log_dir);
     REQUIRE(std::filesystem::exists(configuration_file));
     REQUIRE(std::filesystem::exists(log_dir));
 }

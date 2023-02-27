@@ -42,7 +42,7 @@ void Network::ReadFromFile(const std::string &filename, Simulation &W, Poco::Log
         this->Deserialize(json, W, logstream);
 
     } else {
-        logstream.error() << BOLD(FRED("> ERROR: File does not exist")) << std::endl;
+        logstream.error() << BOLD(FRED("> ERROR: Network File does not exist")) << std::endl;
     }
 
 }

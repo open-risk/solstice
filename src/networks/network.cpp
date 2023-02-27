@@ -39,7 +39,7 @@ Network::Network(Simulation &W, Model &M, Poco::LogStream &logstream) {
             logstream.information() << "====================================" << std::endl;
             logstream.information() << this->GetNetworkName() << std::endl;
             logstream.information() << this->GetEntityCount() << std::endl;
-
+            break;
     };
 
     PrintEntities(2, logstream);

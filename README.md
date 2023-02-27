@@ -27,6 +27,8 @@ The objective is to provide a performant, easily usable, extensible simulation f
 * catch2
 * statslib
 
+Installing these dependencies is system dependent, please follow instructions as per your situation. (In the future we will have a Docker based installation that can simplify this process)
+
 ## Computational Design
 
 * Solstice is written in C++17

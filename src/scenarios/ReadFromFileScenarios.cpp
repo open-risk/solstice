@@ -45,7 +45,7 @@ Scenarios::ReadFromFile(std::string filename, Simulation &W, Model &M, Poco::Log
             this->Deserialize(json, W, M, logstream);
             logstream.information() << ">> 3 | Loaded Scenario Data from Local Files: " << filename << std::endl;
         } else {
-            logstream.error() << BOLD(FRED("> ERROR: File does not exist")) << std::endl;
+            logstream.error() << BOLD(FRED("> ERROR: Scenario Data File does not exist")) << std::endl;
             abort();
         }
     } else {

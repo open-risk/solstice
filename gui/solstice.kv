@@ -1,0 +1,306 @@
+#:kivy 1.8.0
+# Smallest supported screen size 360x640
+
+<Root>:
+    slayout: slayout
+    canvas.before:
+        Color:
+            rgba: 0.6, 0.6, 0.6, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    orientation: 'vertical'
+    padding: 3  
+ 
+    #
+    # First Row of Widgets: Brand, Title and App Buttons
+    #
+    # BoxLayout:
+    #    spacing: 2  
+    #    padding: 2  
+    #    orientation: 'horizontal'
+    #    size_hint_y: .1
+
+    # Second Row of Widgets: Two Column Design
+
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: 5 
+
+        # Left Group 
+        # Loan (New and Selected) Data (interactive buttons at bottom)
+        # Metrics Display
+        # Remaining Time Progress Bar 
+        # Branding
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.5
+            spacing: 3
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.1
+                canvas.before:
+                    Color:
+                        rgba: 0.6, 0.6, 0.6, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Image:
+                    # padding: 5  
+                    # size_hint: None, None
+                    size_hint_x: 0.2
+                    size: '72dp', '72dp'
+                    source: 'data/FuriousBankerA1.png'
+                    mipmap: True
+                    # allow_stretch: True
+                Label:
+                    size_hint_x: 0.8
+                    font_size: '18sp'
+                    halign: 'center'
+                    valign: 'middle'
+                    text_size: self.size
+                    text: "[b][color=4F4584]FuriousBanker :\n[i]The Credit Detox Challenge[/i][/color][/b]"
+                    markup:True
+
+            # Portfolio Metrics Indicators
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.3
+                spacing: 2
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Label:
+                        size_hint_x: 0.5
+                        font_size: '14sp'
+                        text_size: self.size
+                        valign: 'bottom'
+                        halign: 'center'
+                        text: "Profitability (%):"
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: (root.profitability_r, root.profitability_g, root.profitability_b, 1)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        size_hint_x: 0.5
+                        font_size: '14sp'
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'middle'
+                        text: str(round(root.profitability,2))
+                ProgressBar:
+                    orientation: 'horizontal'
+                    min: 0
+                    max: 10
+                    value: root.profitability
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Label:
+                        size_hint_x: 0.5
+                        font_size: '14sp'
+                        text_size: self.size
+                        valign: 'bottom'
+                        halign: 'center'
+                        text: "Concentration Risk:"
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: (root.concentration_r, root.concentration_g, root.concentration_b, 1)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        size_hint_x: 0.5
+                        font_size: '14sp'
+                        halign: 'center'
+                        valign: 'middle'
+                        text_size: self.size
+                        text: str(root.concentration)
+
+                ProgressBar:
+                    orientation: 'horizontal'
+                    min: 0
+                    max: 50
+                    value: root.concentration 
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Label:
+                        size_hint_x: 0.5
+                        font_size: '14sp'
+                        text_size: self.size
+                        valign: 'bottom'
+                        halign: 'center'
+                        text: "Game Score:"
+                    Label:
+                        canvas.before:
+                            Color:
+                                rgba: (root.score_r, root.score_g, root.score_b, 1)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        size_hint_x: 0.5
+                        text_size: self.size
+                        halign: 'center'
+                        valign: 'middle'
+                        font_size: '14sp'
+                        text: str(root.score)
+
+                ProgressBar:
+                    orientation: 'horizontal'
+                    min: 0
+                    max: 1250
+                    value: root.score
+
+                Label:
+                    font_size: '14sp'
+                    text: "Remaining Time" 
+                    halign: 'center'
+                    text_size: self.size
+                ProgressBar:
+                    orientation: 'horizontal'
+                    padding: 50
+                    min: 0
+                    max: root.duration
+                    value: root.time
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.3
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.5
+                    canvas.before:
+                        Color:
+                            rgba: 0.6, 0.6, 0.6, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    # Header Label
+                    Label:
+                        font_size: '14sp'
+                        text: 'Deals Remaining: ' + str(root.new_loan_limit - root.new_loan_count)
+                    Label:
+                        font_size: '14sp'
+                        text: 'Expected Loss (%):' 
+                    Label:
+                        font_size: '14sp'
+                        text: 'Credit Spread (%):' 
+                    Label:
+                        font_size: '14sp'
+                        text: 'Exposure Size (bln):' 
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.25
+                    canvas.before:
+                        Color:
+                            rgba: 0.3, 0.7, 0.3, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    # Header Label
+                    Label:
+                        font_size: '14sp'
+                        text: "Proposal"
+                    Label:
+                        text: str(root.new_loan_el)
+                    Label:
+                        text: str(root.new_loan_s)
+                    Label:
+                        text: str(root.new_loan_exp)
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.25
+                    canvas.before:
+                        Color:
+                            rgba: 0.196, 0.643, 0.807, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    # Selected Loan Data Display
+                    Label:
+                        halign: 'right'
+                        font_size: '14sp'
+                        # text_size: (190,None)
+                        text: 'Compare: [' + str(root.selected_loan_id+1) + ']'
+                    Label:
+                        text: str(root.selected_loan_el)
+                    Label:
+                        text: str(root.selected_loan_s)
+                    Label:
+                        text: str(round(root.selected_loan_exp,2))
+
+            # Game Logic Buttons
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.1
+                Button:
+                    text: 'Accept Proposal'
+                    on_release: root.accept()
+                Button:
+                    text: 'Reject Proposal'
+                    on_release: root.reject()
+            
+
+        # Right Group
+        # Main Box holds: 
+        # Portfolio Data Display (Selectable Button Collection)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: .5
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.6, 0.6, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+           # App Button List Layout Horizontally
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.1
+                Button:
+                    text: "Help"
+                    on_release: root.learn_popup()
+                Button:
+                    text: "Restart"
+                    on_release: root.reset()
+                Button:
+                    text: "About"
+                    on_release: root.about_popup()
+                Button:
+                    text: "Quit"
+                    on_release: root.exit()
+                Button:
+                    text: "Web Docs"
+                    background_color: (1.0, 0.0, 0.0, 1.0)
+                    on_release: root.web_docs()
+            
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: .05
+                Label:
+                    size_hint_x: .7
+                    font_size: '14sp'
+                    text_size: self.size
+                    halign: 'right'
+                    valign: 'middle'
+                    text: "Portfolio Size (bln):  "
+                Label:
+                    size_hint_x: .3
+                    font_size: '14sp'
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'middle'
+                    text: str(root.exposures)
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: .85
+                id: slayout

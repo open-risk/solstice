@@ -1,0 +1,6 @@
+---
+DEBUG: True
+TIMEOUT: 300
+input_file: '../Data/Local/Playbooks/solstice_20_testing.json'
+output_file: ''
+schema_file: '../Data/Local/Schemas/workflow_0.5.1.schema.json'

@@ -37,7 +37,6 @@
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/CXX11/Tensor>
-
 #include "utils/utils.h"
 #include "utils/colors.h"
 

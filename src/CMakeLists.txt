@@ -1,5 +1,5 @@
 # This file is part of the Solstice distribution (https://github.com/open-risk/solstice).
-# Copyright (c) 2022 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2022 - 2023 Open Risk (https://www.openriskmanagement.com)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@ add_definitions("-std=c++17")
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG)
+set(CMAKE_PREFIX_PATH cmake-build-debug)
 
 # VALGRIND (optional)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
@@ -54,17 +55,11 @@ set(CMAKE_CXX_FLAGS_DEBUG)
 # 2-> https with real ssl certificate (for production)
 add_definitions(-DSSL_MODE=0)
 
-#
-# Conan Setup
-#
-if (EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup()
-else ()
-    message(WARNING "The file conanbuildinfo.cmake doesn't exist, you have to run conan install first")
-endif ()
-
 find_package(Poco REQUIRED COMPONENTS Foundation Net NetSSL Util Data DataSQLite)
+find_package(Catch2 REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(statslib REQUIRED)
+find_package(gcem REQUIRED)
 
 #
 #  SOURCE FILES
@@ -249,8 +244,12 @@ add_executable(unit_tests ${TEST_FILES}
 
 catch_discover_tests(unit_tests)
 
+target_include_directories(unit_tests PRIVATE ${Catch2_INCLUDE_DIRS})
+target_include_directories(unit_tests PRIVATE ${Eigen3_INCLUDE_DIRS})
+target_include_directories(unit_tests PRIVATE ${statslib_INCLUDE_DIRS})
+target_include_directories(unit_tests PRIVATE ${gcem_INCLUDE_DIRS})
 target_compile_definitions(unit_tests PRIVATE DEBUG_MODE=1 OPERATING_MODE=0 LOG_LEVEL=7 VERSION=${VERSION})
-target_link_libraries(unit_tests ${CONAN_LIBS}
+target_link_libraries(unit_tests Catch2::Catch2WithMain
         Poco::Data
         Poco::DataSQLite
         Poco::Foundation

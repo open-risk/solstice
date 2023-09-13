@@ -1,8 +1,6 @@
-jsonschema==4.17.3
-Kivy==2.1.0
-Kivy-Garden==0.1.5
-kivymd==1.1.1
-matplotlib==3.7.0
-numpy==1.24.2
-pandas==1.5.3
-ruamel.yaml==0.17.21
+jsonschema
+conan
+matplotlib
+numpy
+pandas
+ruamel.yaml

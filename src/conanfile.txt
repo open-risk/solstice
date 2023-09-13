@@ -1,9 +1,13 @@
 [requires]
+poco/1.12.4
 eigen/3.4.0
 statslib/3.2.0
-catch2/3.2.0
+gcem/1.16.0
+catch2/3.4.0
 
 [generators]
-cmake
-cmake_find_package
-cmake_paths
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout

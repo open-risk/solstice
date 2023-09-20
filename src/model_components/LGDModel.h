@@ -86,9 +86,11 @@ public:
     }
 
 private:
-
+    // Variations in LGD methods
+    // 0 -> Constant
+    // 1 -> Simulated (Beta Function)
     int m_LGDMethod{};
-
+    // Beta function parameters
     double a{};
     double b{};
 };

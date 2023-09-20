@@ -20,7 +20,10 @@
 
 #include "entity_component.h"
 
-
+/**
+ *  Dynamic Position Entity Component. Endows entities with position and velocity
+ *  in a 2D space
+ */
 class DynamicPosition : public EntityComponent {
 
 public:
@@ -154,6 +157,7 @@ public:
     }
 
 private:
+    // Virtual Grid information
     Eigen::ArrayXd m_entity_X;
     Eigen::ArrayXd m_entity_Y;
     Eigen::ArrayXd m_entity_VX;

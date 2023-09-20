@@ -17,6 +17,9 @@
 
 #include "entity_component.h"
 
+/*
+ * Initialize and Entity Component
+ */
 void EntityComponent::Initialize(const std::string& fragment, Simulation &W, Model &M, Poco::LogStream &logstream) {
 
     if (LOG_LEVEL >= 2) {

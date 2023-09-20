@@ -21,6 +21,9 @@
 #include "GenericEntity.h"
 #include "entity_components/DefaultRate.h"
 
+/**
+ *  An entity that has a credit state
+ */
 class PooledCreditEntity : public GenericEntity {
 
 public:
@@ -35,6 +38,7 @@ public:
     };
 
 private:
+    // Component Classes enabling Credit characterisation
     DefaultRate m_DR;
 };
 

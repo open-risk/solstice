@@ -22,6 +22,8 @@
 
 #include "core/simulation.h"
 
+/// \brief Generic Entity Pool Class (Base Class)
+
 class GenericEntity {
 public:
 

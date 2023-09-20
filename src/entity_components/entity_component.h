@@ -23,6 +23,9 @@
 #include "core/simulation.h"
 #include "models/model.h"
 
+/**
+ * Base Class for Entity Components.
+ */
 class EntityComponent {
 public:
 

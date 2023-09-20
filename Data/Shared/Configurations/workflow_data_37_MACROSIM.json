@@ -20,7 +20,7 @@
     "model_configuration": {
         "description": "Pure Macro Scenario Generator",
         "model_configuration_name": "Macrosim",
-        "Analytic_Tests": 0,
+        "AnalyticTests": 0,
         "ScenarioMethod": 2,
         "MaturityMethod": 0,
         "MacroScenarios": 10,

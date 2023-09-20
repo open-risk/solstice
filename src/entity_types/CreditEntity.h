@@ -21,6 +21,9 @@
 #include "GenericEntity.h"
 #include "entity_components/DefaultState.h"
 
+/**
+ *  An entity that has a credit state
+ */
 class CreditEntity : public GenericEntity {
 
 public:

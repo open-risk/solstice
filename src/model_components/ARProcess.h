@@ -131,7 +131,7 @@ public:
     }
 
 private:
-
+    // AR Model Order
     int order{};
 
     double mu{}; // offset (usually 0)

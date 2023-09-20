@@ -20,7 +20,10 @@
 
 #include "entity_component.h"
 
-
+/**
+ * LGD / Loss State Entity Component. Provides data for the calculation and storage
+ *  of loss amounts in the case of credit default
+ */
 class LossState : public EntityComponent {
 
 public:

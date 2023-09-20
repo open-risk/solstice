@@ -75,7 +75,7 @@ void Model::model_macro(Network &Po,
 
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | Initialized parameters" << std::endl;
+        logstream.information() << ">> 8 | Initialized parameters" << std::endl;
     }
 
     Eigen::Tensor<double, 3> Macro_Scenarios;
@@ -83,7 +83,7 @@ void Model::model_macro(Network &Po,
     z3.resize(MacroScenarios, TimePoints, Factors);
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | Memory Initialized" << std::endl;
+        logstream.information() << ">> 8 | Memory Initialized" << std::endl;
     }
 
     /**
@@ -93,15 +93,15 @@ void Model::model_macro(Network &Po,
      */
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | Starting Macro Scenario Simulation" << std::endl;
+        logstream.information() << ">> 8 | Starting Macro Scenario Simulation" << std::endl;
     }
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | Scenario Method: " << this->ScenarioMethod() << std::endl;
+        logstream.information() << ">> 8 | Scenario Method: " << this->ScenarioMethod() << std::endl;
     }
 
     if (this->ScenarioMethod() == 0) {
-        logstream.warning() << ">> 8 | ERROR: Scenario Method not compatible with Model Family" << std::endl;
+        logstream.information() << ">> 8 | ERROR: Scenario Method not compatible with Model Family" << std::endl;
         abort();
     }
 
@@ -112,32 +112,35 @@ void Model::model_macro(Network &Po,
     if (this->ScenarioMethod() == 1) {
 
         if (LOG_LEVEL >= 1) {
-            logstream.warning() << ">> 8 | Simulating Macro Scenarios" << std::endl;
+            logstream.information() << ">> 8 | Simulating Macro Scenarios" << std::endl;
         }
         for (int fs = 0; fs < MacroScenarios; fs++) {
             compute_simulated_multifactor_scenarios(fs, L, z3, CorrelationMethod, Factors, logstream);
         }
         if (LOG_LEVEL >= 1) {
-            logstream.warning() << ">> 8 | Calculated Simulated Macro Scenario" << std::endl;
+            logstream.information() << ">> 8 | Calculated Simulated Macro Scenario" << std::endl;
         }
 
     } else {
-        logstream.warning() << ">> 8 | Invalid Scenario or Model Family" << std::endl;
+        logstream.information() << ">> 8 | Invalid Scenario or Model Family" << std::endl;
         abort();
     }
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | " << this->MacroScenarios() << "  Macro Scenarios Generated " << std::endl;
+        logstream.information() << ">> 8 | " << this->MacroScenarios() << "  Macro Scenarios Generated " << std::endl;
     }
 
     Macro_Scenarios = S.GetZ3();
 
     if (LOG_LEVEL >= 1) {
-        logstream.warning() << ">> 8 | Macro Scenarios Generated " << std::endl;
-        logstream.warning() << ">> 8 | Moments of Systematic Factor: " << std::endl;
+        logstream.information() << ">> 8 | Macro Scenarios Generated " << std::endl;
+        logstream.information() << ">> 8 | Moments of Systematic Factor: " << std::endl;
+        // TODO statistics
+//        logstream.information() << ">> 8 | Mean: " << arma::mean(Macro_Scenarios.slice(0)) << std::endl;
+//        logstream.information() << ">> 8 | Std: " << arma::stddev(Macro_Scenarios.slice(0)) << std::endl;
         if (LOG_LEVEL >= 3) {
-            logstream.warning() << ">> 8 | Scenario Values " << std::endl;
-            logstream.warning() << Macro_Scenarios;
+            logstream.information() << ">> 8 | Scenario Values " << std::endl;
+            logstream.information() <<Macro_Scenarios;
         }
     }
 

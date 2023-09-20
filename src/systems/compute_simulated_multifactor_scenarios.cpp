@@ -26,11 +26,11 @@ Model::compute_simulated_multifactor_scenarios(int fs, Eigen::MatrixXd &L, Eigen
     int RiskHorizon = this->GetRiskHorizon();
 
     if (LOG_LEVEL >= 2) {
-        logstream.warning() << ">> 8 | Correlation Method: " << CorrelationMethod << std::endl;
-        logstream.warning() << ">> 8 | Macro Scenarios: " << this->MacroSimulations() << std::endl;
-        logstream.warning() << ">> 8 | Branch Scenarios: " << this->BranchScenarios() << std::endl;
-        logstream.warning() << ">> 8 | Time Points: " << this->TimePoints() << std::endl;
-        logstream.warning() << ">> 8 | Temporal Interval: " << this->Interval() << std::endl;
+        logstream.information() << ">> 8 | Correlation Method: " << CorrelationMethod << std::endl;
+        logstream.information() << ">> 8 | Macro Scenarios: " << this->MacroSimulations() << std::endl;
+        logstream.information() << ">> 8 | Branch Scenarios: " << this->BranchScenarios() << std::endl;
+        logstream.information() << ">> 8 | Time Points: " << this->TimePoints() << std::endl;
+        logstream.information() << ">> 8 | Temporal Interval: " << this->Interval() << std::endl;
     }
 
     double dt_root = 1.0;

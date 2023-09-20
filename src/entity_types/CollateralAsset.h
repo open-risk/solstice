@@ -21,6 +21,9 @@
 #include "GenericEntity.h"
 #include "entity_components/AssetReturn.h"
 
+/**
+ *  An entity that has an asset return (used as collateral)
+ */
 class CollateralAsset : public GenericEntity {
 
 public:

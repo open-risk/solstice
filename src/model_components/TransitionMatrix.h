@@ -20,7 +20,9 @@
 #include "models/model.h"
 #include "model_component.h"
 
-
+/**
+ * Transition Matrix Model Component.
+ */
 class TransitionMatrix : public ModelComponent {
 public:
     explicit TransitionMatrix(const std::string &name) : ModelComponent(name) {

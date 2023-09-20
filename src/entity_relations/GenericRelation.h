@@ -23,6 +23,11 @@
 #include <any>
 #include "core/simulation.h"
 
+
+/// \brief EntityPool
+///
+/// \code{.unparsed}
+
 class GenericRelation {
 public:
 
@@ -57,6 +62,7 @@ private:
     int m_AdjacencyDataMode{};
 
 protected:
+// Total entity (node) number
     std::size_t m_From_Size;
     std::size_t m_To_Size;
 

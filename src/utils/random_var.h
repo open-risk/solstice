@@ -1,6 +1,6 @@
 /*################################################################################
   ##
-  ##   Copyright (C) 2020-2022 Open Risk (www.openriskmanagement.com)
+  ##   Copyright (C) 2020-2023 Open Risk (www.openriskmanagement.com)
   ##
   ##   This file is part of the tailRisk C++ library.
   ##
@@ -18,11 +18,6 @@
   ##
   ################################################################################*/
 
-
-/**
- * File:   random_var.h
- * Date: Mon Nov  9 10:31:35 CET 2020
- */
 
 #ifndef RANDOM_VARIABLE_H
 #define RANDOM_VARIABLE_H
@@ -76,6 +71,7 @@ public:
         m_S = x;
     }
 
+    // overload assignment operator
     RandomVar &operator=(const RandomVar &R);
 
     [[nodiscard]] size_t size() const {

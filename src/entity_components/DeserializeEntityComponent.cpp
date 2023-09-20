@@ -17,7 +17,13 @@
 
 #include "entity_component.h"
 
-
+/**
+ * Generic entity Component Parsing.
+ * @param json
+ * @param W
+ * @param M
+ * @param logstream
+ */
 void EntityComponent::Deserialize(const std::string& json, Simulation &W, Model &M, Poco::LogStream &logstream) {
 
     if (LOG_LEVEL >= 2) {

@@ -17,6 +17,13 @@
 
 #include "entity_component.h"
 
+/**
+ * Read Entity Component Data from API
+ * @param URL
+ * @param W
+ * @param M
+ * @param logstream
+ */
 void EntityComponent::GetFromAPI(const std::string &URL, Simulation &W, Model &M, Poco::LogStream &logstream) {
 
     std::string APItoken = W.getToken();

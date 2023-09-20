@@ -25,6 +25,9 @@
 #include "core/simulation.h"
 #include "models/model.h"
 
+/**
+ * Base Class for Model Components.
+ */
 class ModelComponent {
 public:
 
@@ -51,7 +54,7 @@ private:
     int m_entity_size{};
 
 protected:
-
+// The name of the component
     std::string m_component_Name;
     bool m_Debug{};
 };

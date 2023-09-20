@@ -20,6 +20,9 @@
 
 #include "entity_component.h"
 
+/**
+ * Geospatial Entity Component. Allows locating entities on a 2D map
+ */
 class GeoSpatial : public EntityComponent {
 
 public:
@@ -55,6 +58,7 @@ public:
     };
 
 private:
+    // Virtual Grid information
     Eigen::ArrayXd m_entity_X;
     Eigen::ArrayXd m_entity_Y;
 };

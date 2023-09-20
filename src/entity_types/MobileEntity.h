@@ -22,6 +22,9 @@
 #include "entity_components/DynamicPosition.h"
 #include "entity_components/Volatility.h"
 
+/**
+ *  An entity that can "move around" in a virtual 2D space
+ */
 class MobileEntity : public GenericEntity {
 
 public:
@@ -45,10 +48,12 @@ public:
         return m_sigma;
     }
 
+    // Object update
     void SetDP(DynamicPosition DP) {
         m_DP = std::move(DP);
     }
 
+    // Forwarding function approach:
     void SetX(Eigen::ArrayXd &X) { m_DP.SetX(X); }
 
     void Print(Poco::LogStream &logstream) override {

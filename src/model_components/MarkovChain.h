@@ -18,6 +18,9 @@
 #include "models/model.h"
 #include "model_component.h"
 
+/**
+ * Markov Chain Model Component.
+ */
 class MarkovChain : public ModelComponent {
 public:
 

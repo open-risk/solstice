@@ -20,6 +20,9 @@
 
 #include "entity_component.h"
 
+/**
+ * IFRS 9 Entity Component. Allows assigning an IFRS 9 Stage attribute to a credit entity
+ */
 class IFRS9 : public EntityComponent {
 
 public:

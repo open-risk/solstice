@@ -122,6 +122,6 @@ public:
 
 private:
     int m_Factors{};
-
+// Loadings to factors
     Eigen::VectorXd beta;
 };

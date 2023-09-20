@@ -22,6 +22,9 @@
 
 #include "entity_component.h"
 
+/**
+ * Default Threshold Entity Component. Required for Threshold Type Default Risk Calculations
+ */
 class DefaultThreshold : public EntityComponent {
 
 public:

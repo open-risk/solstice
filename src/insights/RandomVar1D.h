@@ -18,6 +18,10 @@
 #include "result_component.h"
 #include "utils/random_var.h"
 
+/**
+ * Storing Generic 1D Random variable (Sampling Configuration)
+ *
+ */
 class RandomVar1D : public ResultComponent {
 
 public:

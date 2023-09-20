@@ -20,6 +20,10 @@
 
 #include "entity_component.h"
 
+/**
+ * Regulatory Capital Entity Component. Associates with a credit entity regulatory capital
+ * parameters
+ */
 class RegulatoryCapital : public EntityComponent {
 
 public:

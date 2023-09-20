@@ -26,6 +26,9 @@
 
 class ModelComponent;
 
+/**
+ * Model Data container of Model Components.
+ */
 class Model_Data {
 public:
 

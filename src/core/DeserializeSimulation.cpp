@@ -166,6 +166,7 @@ void Simulation::Deserialize(const std::string &json, Poco::LogStream &logstream
     //
     // The output settings L2 section
     //
+
     Poco::JSON::Object::Ptr Output_Set = JsonObject->getObject("output_settings");
     try {
         m_ResultsURL = Output_Set->getValue<std::string>("Results_url");
@@ -173,6 +174,7 @@ void Simulation::Deserialize(const std::string &json, Poco::LogStream &logstream
         logstream.error() << BOLD(FRED("> ERROR: Problem reading results url")) << std::endl;
         abort();
     }
+
     try {
         m_ReportingMode = Output_Set->getValue<int>("Reporting_mode");
     } catch (...) {

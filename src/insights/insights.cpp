@@ -18,6 +18,11 @@
 #include "insights.h"
 #include "RandomVar1D.h"
 
+/**
+ *
+ * Initialize Insight Components
+ *
+ */
 Insights::Insights(Simulation &W, Model &M, Network &P, Poco::LogStream &logstream) {
 
     this->Deserialize(W.InputString(), logstream);
@@ -42,7 +47,7 @@ Insights::Insights(Simulation &W, Model &M, Network &P, Poco::LogStream &logstre
             m_Result_Components.emplace_back(std::make_shared<RandomVar1D>(size));
             break;
         default:
-            logstream.error() << "> ERROR: Insights::Insights, Invalid Model Family" << std::endl;
+            logstream.error() << BOLD(FRED("> ERROR: Insights::Insights, Invalid Model Family")) << std::endl;
             abort();
     }
 

@@ -36,6 +36,7 @@ public:
 
 private:
 
+    // Total Result (node) number
     int m_Result_size{};
 
     bool m_Debug{};

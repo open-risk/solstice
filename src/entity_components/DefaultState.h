@@ -20,7 +20,9 @@
 
 #include "entity_component.h"
 
-
+/**
+ * Default State Entity Component. Provides states that characterize credit default
+ */
 class DefaultState : public EntityComponent {
 
 public:

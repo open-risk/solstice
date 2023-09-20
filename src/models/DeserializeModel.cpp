@@ -60,7 +60,7 @@ void Model::Deserialize(const std::string &json, Poco::LogStream &logstream, Sim
         abort();
     }
     try {
-        m_AnalyticTests = Model_Configuration->getValue<int>("Analytic_Tests");
+        m_AnalyticTests = Model_Configuration->getValue<int>("AnalyticTests");
     } catch (...) {
         logstream.error() << BOLD(FRED("> ERROR: Problem reading analytic tests")) << std::endl;
         abort();

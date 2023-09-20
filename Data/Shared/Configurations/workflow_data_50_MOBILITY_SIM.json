@@ -18,7 +18,7 @@
         "Transition_data_mode": 1
     },
     "model_configuration": {
-        "Analytic_Tests": 0,
+        "AnalyticTests": 0,
         "BranchScenarios": 1,
         "CalculationHorizon": 1,
         "CorrelationMethod": 1,

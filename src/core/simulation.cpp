@@ -50,7 +50,7 @@ Simulation::Simulation(int operating_mode, Poco::LogStream &logstream, char** ar
     }
     else if (operating_mode == 3) {
         // BATCH MODE USING HARDWIRED CONFIGURATION
-        m_configuration_file = path + "../../" + m_configuration_dir + m_configuration_file;
+        m_configuration_file = path + "../" + m_configuration_dir + m_configuration_file;
         logstream.information() << "> Reading Configuration filename: " + m_configuration_file << std::endl;
         ReadFromFile(m_configuration_file, logstream);
         logstream.information() << "> Configuration Description: " + this->Description() << std::endl;

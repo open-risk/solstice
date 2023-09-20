@@ -214,20 +214,7 @@ set(TEST_FILES
         testing/run_levels/test_runlevel_10.cpp
         )
 
-set(SOURCE_FILES ${CORE_FILES})
-
-#
-#  EXECUTABLES
-#
-# Executables of different Solstice operating modes (CGI, CLI etc)
-
-# CATCH2 TESTING
-include(Catch)
-include(CTest)
-enable_testing()
-
-add_executable(unit_tests ${TEST_FILES}
-        ${CORE_FILES}
+set(SOURCE_FILES ${CORE_FILES}
         ${MODEL_FILES}
         ${MODEL_COMPONENT_FILES}
         ${SYSTEM_FILES}
@@ -239,8 +226,35 @@ add_executable(unit_tests ${TEST_FILES}
         ${SCENARIO_FILES}
         ${INSIGHT_FILES}
         ${ALGORITHM_FILES}
-        ${UTIL_FILES}
-        )
+        ${UTIL_FILES})
+
+#
+#  EXECUTABLES
+#
+# Executables of different Solstice operating modes
+
+
+# DEBUG MODE
+add_executable(solstice.dbg core/main.cpp core/run.cpp ${SOURCE_FILES})
+target_include_directories(solstice.dbg PRIVATE ${Catch2_INCLUDE_DIRS})
+target_include_directories(solstice.dbg PRIVATE ${Eigen3_INCLUDE_DIRS})
+target_include_directories(solstice.dbg PRIVATE ${statslib_INCLUDE_DIRS})
+target_include_directories(solstice.dbg PRIVATE ${gcem_INCLUDE_DIRS})
+target_compile_definitions(solstice.dbg PRIVATE DEBUG_MODE=1 OPERATING_MODE=3 LOG_LEVEL=7 VERSION=${VERSION})
+target_link_libraries(solstice.dbg Catch2::Catch2WithMain
+        Poco::Data
+        Poco::DataSQLite
+        Poco::Foundation
+        Poco::Net
+        Poco::NetSSL
+        Poco::Util)
+
+# CATCH2 TESTING
+include(Catch)
+include(CTest)
+enable_testing()
+
+add_executable(unit_tests ${TEST_FILES} ${SOURCE_FILES})
 
 catch_discover_tests(unit_tests)
 

@@ -21,11 +21,11 @@ The objective is to provide a performant, easily usable, extensible simulation f
 
 * c++17
 * cmake
-* conan (tentative)
+* conan
 * poco++
 * eigen
+* statslib (including gcem dependency)
 * catch2
-* statslib
 
 Installing these dependencies is system dependent, please follow instructions as per your situation. (In the future we will have a Docker based installation that can simplify this process)
 
@@ -42,7 +42,8 @@ Solstice adopts in its implementation a number of features of recent entity-comp
 
 ## Documentation
 
-* [Analytic Framework](manuals/solstice_manual_0.1.pdf)
+* [Introduction](manuals/solstice_introduction_0.1.pdf)
+* [Analytic Framework](manuals/solstice_analytics_0.1.pdf)
 
 ## Econometric Models
 

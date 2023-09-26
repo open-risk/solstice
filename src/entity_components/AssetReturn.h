@@ -32,6 +32,7 @@ class AssetReturn : public EntityComponent {
 public:
     explicit AssetReturn() : EntityComponent("Asset Return") {
     }
+
     explicit AssetReturn(int size) : EntityComponent("Asset Return") {
         m_entity_size = size;
         r.setZero(size);
@@ -41,13 +42,15 @@ public:
         std::string fragment = "AssetReturn";
         Initialize(fragment, W, M, logstream);
     }
-    
+
     [[nodiscard]] Eigen::VectorXd GetR() const {
         return r;
     }
+
     void SetR(Eigen::VectorXd X) {
         r = std::move(X);
     }
+
     void Print(Poco::LogStream &logstream) {
         for (int i = 0; i < m_entity_size; i++)
             logstream.information() << i << " " << r[i] << std::endl;

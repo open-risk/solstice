@@ -18,9 +18,10 @@
 #include <Poco/SimpleFileChannel.h>
 #include "core/simulation.h"
 
-Simulation::Simulation(int operating_mode, Poco::LogStream &logstream, char** arg_strings)
+Simulation::Simulation(int operating_mode, std::string& payload, Poco::LogStream &logstream, char** arg_strings)
 : m_logstream(logstream) {
 
+    m_sim_operating_mode = operating_mode;
     char *config_name = arg_strings[1];
 
     std::string c_time = get_current_time();
@@ -50,13 +51,13 @@ Simulation::Simulation(int operating_mode, Poco::LogStream &logstream, char** ar
     }
     else if (operating_mode == 3) {
         // BATCH MODE USING HARDWIRED CONFIGURATION
-        m_configuration_file = path + "../" + m_configuration_dir + m_configuration_file;
+        m_configuration_file = path + "../../" + m_configuration_dir + m_configuration_file;
         logstream.information() << "> Reading Configuration filename: " + m_configuration_file << std::endl;
         ReadFromFile(m_configuration_file, logstream);
         logstream.information() << "> Configuration Description: " + this->Description() << std::endl;
         logstream.information() << "> Configuration Verbosity Level: " << this->VerboseLevel() << std::endl;
     } else if (operating_mode == 1) {
-        logstream.information() << "> Parsing Client HTTP Payload" << std::endl;
+        logstream.information() << "> CGI Parsing Client HTTP Payload" << std::endl;
         logstream.information() << "> ---------------------------" << std::endl;
         for (const auto &i: ENV) {
             logstream.information() << i << " : ";
@@ -77,6 +78,31 @@ Simulation::Simulation(int operating_mode, Poco::LogStream &logstream, char** ar
         input_json_string = json;
         logstream.information() << "> Hardwired Verbosity Level: " << LOG_LEVEL << std::endl;
         this->Deserialize(json, logstream);
+        logstream.information() << "> Configuration Description: " + this->Description() << std::endl;
+        logstream.information() << "> Configuration Run Level: " + std::to_string(this->RunLevel()) << std::endl;
+    }
+    else if (operating_mode == 2) {
+        logstream.information() << "> Server Parsing Client HTTP Payload" << std::endl;
+        logstream.information() << "> ---------------------------" << std::endl;
+        for (const auto &i: ENV) {
+            logstream.information() << i << " : ";
+            // attempt to retrieve value of environment variable
+            char *value = getenv(i.c_str());
+            if (value != nullptr) {
+                logstream.information() << value << std::endl;
+            } else {
+                logstream.error() << "EMPTY" << std::endl;
+            }
+        }
+        logstream.information() << "> ---------------------------" << std::endl;
+        // Copy all data from cin, using iterators.
+//        std::istream_iterator<char> begin(std::cin >> std::noskipws);
+//        std::istream_iterator<char> end;
+//        std::string json(begin, end);
+        // Store the received json std::string for further use
+        input_json_string = payload;
+        logstream.information() << "> Hardwired Verbosity Level: " << LOG_LEVEL << std::endl;
+        this->Deserialize(payload, logstream);
         logstream.information() << "> Configuration Description: " + this->Description() << std::endl;
         logstream.information() << "> Configuration Run Level: " + std::to_string(this->RunLevel()) << std::endl;
     }

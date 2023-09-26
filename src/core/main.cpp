@@ -22,7 +22,7 @@
 #include "Poco/Path.h"
 #include "core/simulation.h"
 
-int main(int num_args, char** arg_strings) {
+int main(int num_args, char **arg_strings) {
 
     //
     // Start logging
@@ -39,7 +39,7 @@ int main(int num_args, char** arg_strings) {
     // If running in debug mode overwrite previous configuration file
     // Else produce a timestamp
     if (OPERATING_MODE == 3) {
-        logstreamname = "../Logs/configuration.log";
+        logstreamname = "../../Logs/configuration.log";
     } else {
         logstreamname = "Logs/configuration_" + get_current_time() + ".log";
     }
@@ -104,7 +104,8 @@ int main(int num_args, char** arg_strings) {
     // Create a Solstice simulation instance
     // Instantiation provides a few global hard-coded options
     // Reads general config parameters from JSON file
-    Simulation engine(OPERATING_MODE, logstream, arg_strings);
+    std::string payload = "Debug";
+    Simulation engine(OPERATING_MODE, payload, logstream, arg_strings);
 
     // Start running the engine
     engine.run(logstream);

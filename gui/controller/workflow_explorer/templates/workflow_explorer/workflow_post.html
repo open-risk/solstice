@@ -1,0 +1,36 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }} Solstice Workflow View and Execute
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block extrastyle %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <form method="post">{% csrf_token %}
+                    <div id="workflow">
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Post Again"/>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

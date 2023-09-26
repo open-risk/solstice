@@ -58,8 +58,8 @@
         "Verbose_Level": 3
     },
     "remote_model_url": "",
-    "run_level": 10,
-    "schema_version": "0.5.1",
+    "run_level": 3,
+    "schema_version": "0.5.2",
     "workflow_description": "Dry Run Workflow",
     "workflow_id": "CN_0",
     "workflow_name": "DRYRUN",

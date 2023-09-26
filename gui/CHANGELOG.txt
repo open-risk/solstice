@@ -1,1 +1,3 @@
+
+* 0.2 Adopt Django as Web GUI (basic setup)
 * 0.1 First Release GUI Controller for Solstice

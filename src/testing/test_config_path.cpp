@@ -27,12 +27,12 @@ TEST_CASE("Solstice config is accessible", "[config]") {
     root_path.makeParent();
 
     // std::string path = Poco::Path::parent();
-    std::string configuration_dir = "Data/Local/Configurations/";
+    std::string configuration_dir = "../Data/Local/Configurations/";
     std::string configuration_file = "workflow_data_0_DRYRUN.json";
     // configuration_file = path + "../" + configuration_dir + configuration_file;
     configuration_file = root_path.toString() + configuration_dir + configuration_file;
     std::cout << configuration_file << std::endl;
-    std::string log_dir = "Logs/";
+    std::string log_dir = "../Logs/";
     log_dir = root_path.toString() + log_dir;
     std::string log_file = "configuration.log";
     log_file = log_dir + log_file;

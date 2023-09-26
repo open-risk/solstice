@@ -1,0 +1,106 @@
+[
+  {
+    "model": "workflow_explorer.workflowjson",
+    "pk": 1,
+    "fields": {
+      "name": "WF_0",
+      "payload": {
+        "input_settings": {
+          "AdjacencyURL": "Networks/adjacency_data.json",
+          "Adjacency_data_mode": 1,
+          "BaseAPIURL": "",
+          "CorrelationURL": "Model_Data/correlation_data.json",
+          "Correlation_data_mode": 1,
+          "DataDir": "",
+          "LoadingsURL": "Model_Data/correlation_data.json",
+          "ManagerDataURL": "liability_structure.json",
+          "Manager_data_mode": 0,
+          "ModelDataURL": "Model_Data",
+          "NetworkDataURL": "Network_Data",
+          "PortfolioURL": "",
+          "Portfolio_data_mode": 0,
+          "ScenarioDataURL": "Scenarios/scenario_data.1.json",
+          "Scenario_data_mode": 0,
+          "ThresholdDataURL": "Model_Data/threshold_data.json",
+          "TransitionDataURL": "Model_Data/transition_data.json",
+          "Transition_data_mode": 1
+        },
+        "model_configuration": {
+          "AnalyticTests": 0,
+          "BranchScenarios": 1,
+          "CalculationHorizon": 3,
+          "CorrelationMethod": 0,
+          "FactorScenarios": 1,
+          "Factors": 3,
+          "Interval": 0,
+          "LGDMethod": 0,
+          "LiabilityMethod": 0,
+          "MacroScenarios": 1,
+          "MaturityMethod": 0,
+          "ModelFamilyID": 0,
+          "Order": 0,
+          "PortfolioScenarios": 1,
+          "RatingPeriods": 10,
+          "Ratings": 8,
+          "Resolution": 1000,
+          "RiskHorizon": 3,
+          "ScenarioMethod": 2,
+          "ScenarioPeriods": 3,
+          "StageGap": 1,
+          "description": "Dry Run Workflow",
+          "model": 3,
+          "model_configuration_name": "Dryrun",
+          "user": 1
+        },
+        "model_server": "solstice",
+        "network_shape": 1,
+        "output_settings": {
+          "Reporting_mode": 2,
+          "Results_list": [
+            0
+          ],
+          "Results_url": "Results/output.json",
+          "Scenario_output": 0,
+          "Verbose_Level": 3
+        },
+        "remote_model_url": "",
+        "run_level": 3,
+        "schema_version": "0.5.2",
+        "workflow_description": "Dry Run Workflow",
+        "workflow_id": "CN_0",
+        "workflow_name": "DRYRUN",
+        "workflow_status": "Draft"
+      }
+    }
+  },
+  {
+    "model": "workflow_explorer.workflow",
+    "pk": 1,
+    "fields": {
+      "workflow_type": "2",
+      "objective": 0,
+      "creation_date": "2023-09-25T17:57:00.888Z",
+      "last_change_date": "2023-09-25T17:57:00.888Z",
+      "name": "Default Name",
+      "workflow_id": "CN_0000",
+      "workflow_description": "Default Description",
+      "workflow_status": 0,
+      "run_level": 7,
+      "api_version": "0.4",
+      "root_dir": null,
+      "portfolio_data_mode": 1,
+      "liability_data_mode": 0,
+      "correlation_data_mode": 1,
+      "transition_data_mode": 1,
+      "scenario_data_mode": 1,
+      "single_asset_flag": false,
+      "reporting_mode": 0,
+      "results_url": null,
+      "results_list": {},
+      "scenario_output": 0,
+      "verbose_level": 1,
+      "portfolio_data": {},
+      "scenario_data": {}
+    }
+  }
+]

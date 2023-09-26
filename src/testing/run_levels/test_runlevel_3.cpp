@@ -29,14 +29,14 @@ TEST_CASE("Solstice run level 3 (Model Data Config)", "[runlevel3]") {
     logger.setLevel(LOG_LEVEL);
     Poco::LogStream logstream(logger);
     std::string path = Poco::Path::current();
-    std::string configuration_dir = "Data/Local/Configurations/";
+    std::string configuration_dir = "../Data/Local/Configurations/";
     std::string configuration_file = "workflow_data_50_MOBILITY_SIM.json";
     configuration_file = path + "../" + configuration_dir + configuration_file;
     std::string exec_name = "Catch2 Test";
     char** argv[2];
     argv[0] = (char **) exec_name.c_str();
     argv[1] = (char **) configuration_file.c_str();
-    Simulation engine(OPERATING_MODE, logstream, reinterpret_cast<char **>(argv));
+    Simulation engine(OPERATING_MODE, exec_name, logstream, reinterpret_cast<char **>(argv));
     Model MC(engine, logstream);
     Model_Data MD(engine, MC, logstream);
     std::cout << "DONE" << std::endl;

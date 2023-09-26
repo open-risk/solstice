@@ -22,14 +22,14 @@ set(PROJECT_DESCRIPTION "Solstice is a simulation framework of economic networks
 
 cmake_minimum_required(VERSION 3.19)
 
-# project name and version
+# Project name and version
 project(solstice)
 set(SOLSTICE_VERSION_MAJOR 0)
 set(SOLSTICE_VERSION_MINOR 5)
 set(SOLSTICE_VERSION_PATCH 0)
 set(SOLSTICE_VERSION ${SOLSTICE_VERSION_MAJOR}.${SOLSTICE_VERSION_MINOR}.${SOLSTICE_VERSION_PATCH})
 
-# compiler choices. c++17 is required
+# compiler choices. c++14 is required
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -std=c++17)
 add_definitions("-std=c++17")
@@ -39,6 +39,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG)
 set(CMAKE_PREFIX_PATH cmake-build-debug)
+
 
 # VALGRIND (optional)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
@@ -229,12 +230,28 @@ set(SOURCE_FILES ${CORE_FILES}
         ${UTIL_FILES})
 
 #
-#  EXECUTABLES
-#
 # Executables of different Solstice operating modes
+#
 
+#
+# SERVER MODE EXECUTABLE
+#
+add_executable(solstice.web  core/server.cpp core/run.cpp ${SOURCE_FILES})
+target_include_directories(solstice.web PRIVATE ${Eigen3_INCLUDE_DIRS})
+target_include_directories(solstice.web PRIVATE ${statslib_INCLUDE_DIRS})
+target_include_directories(solstice.web PRIVATE ${gcem_INCLUDE_DIRS})
+target_compile_definitions(solstice.web PRIVATE DEBUG_MODE=1 OPERATING_MODE=2 LOG_LEVEL=7 VERSION=${VERSION})
+target_link_libraries(solstice.web
+        Poco::Data
+        Poco::DataSQLite
+        Poco::Foundation
+        Poco::Net
+        Poco::NetSSL
+        Poco::Util)
 
-# DEBUG MODE
+#
+# DEBUG MODE EXECUTABLE
+#
 add_executable(solstice.dbg core/main.cpp core/run.cpp ${SOURCE_FILES})
 target_include_directories(solstice.dbg PRIVATE ${Catch2_INCLUDE_DIRS})
 target_include_directories(solstice.dbg PRIVATE ${Eigen3_INCLUDE_DIRS})
@@ -249,7 +266,9 @@ target_link_libraries(solstice.dbg Catch2::Catch2WithMain
         Poco::NetSSL
         Poco::Util)
 
+#
 # CATCH2 TESTING
+#
 include(Catch)
 include(CTest)
 enable_testing()
@@ -270,3 +289,6 @@ target_link_libraries(unit_tests Catch2::Catch2WithMain
         Poco::Net
         Poco::NetSSL
         Poco::Util)
+#add_custom_command(TARGET unit_tests
+#        POST_BUILD
+#        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:unit_tests> ../../bin)

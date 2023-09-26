@@ -1,7 +1,8 @@
-jsonschema
-conan
-matplotlib
-numpy
-pandas
-ruamel.yaml
 Django
+django-jazzmin
+django-debug-toolbar
+django-extensions
+django-prettyjson
+django-jsoneditor
+djangorestframework
+tzdata

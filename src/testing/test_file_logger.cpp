@@ -24,7 +24,7 @@
 TEST_CASE("Solstice file logger can be instantiated", "[logger]") {
 
     std::string path = Poco::Path::current();
-    std::string log_dir = "Logs/";
+    std::string log_dir = "../Logs/";
     log_dir = path + "../" + log_dir;
     std::string log_file = "configuration.log";
     log_file = log_dir + log_file;

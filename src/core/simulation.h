@@ -65,7 +65,7 @@ class Simulation {
 
 public:
 
-    Simulation(int operating_mode, Poco::LogStream &logstream, char** arg_strings);
+    Simulation(int operating_mode, std::string &payload, Poco::LogStream &logstream, char **arg_strings);
 
     ~Simulation() = default;
 
@@ -96,7 +96,7 @@ public:
     void control_point(int level, Poco::LogStream &logstream);
 
     void
-    announce_level(int step, const std::string& step_string, int verbose_level, Poco::LogStream &logstream,
+    announce_level(int step, const std::string &step_string, int verbose_level, Poco::LogStream &logstream,
                    int operating_mode);
 
     int getLogging() {
@@ -112,11 +112,11 @@ public:
     }
 
     [[nodiscard]] int getOperating_mode() const {
-        return m_user_operating_mode;
+        return m_sim_operating_mode;
     }
 
     [[nodiscard]] const std::string *getOperating_modes() const {
-        return m_user_operating_modes;
+        return m_sim_operating_modes;
     }
 
     [[nodiscard]] int getRun_level() const {
@@ -250,9 +250,9 @@ public:
 
 private:
 
-    int m_user_operating_mode = 0;
-    std::string m_user_operating_modes[4] = {"Interactive TTY", "CGI",
-                                             "HTTP", "Batch"};
+    int m_sim_operating_mode = 0;
+    std::string m_sim_operating_modes[4] = {"Interactive TTY", "CGI",
+                                            "HTTP", "Batch"};
     int const static m_logging = 0;
     int const static m_summary_output = 0;
 

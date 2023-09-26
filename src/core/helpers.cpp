@@ -86,10 +86,15 @@ announce_level(int step, const std::string& step_string, int verbose_level, Poco
         }
     }
     if (m_Debug) {
-        if (m_user_operating_mode == 1) {
+        if (m_sim_operating_mode == 1) {
             CGI_control(step);
         }
-        control_point(step + 1, logstream);
+        else if(m_sim_operating_mode == 2){
+            // Do nothing
+        }
+        else {
+            control_point(step + 1, logstream);
+        }
     }
 }
 

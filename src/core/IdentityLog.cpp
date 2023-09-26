@@ -45,9 +45,9 @@ std::string Simulation::IdentityLog(char *command_name) {
 
     // Get Solstice Operating Mode
     ss.str("");
-    ss << this->m_user_operating_mode;
+    ss << this->m_sim_operating_mode;
     ss << " (";
-    ss << this->m_user_operating_modes[this->m_user_operating_mode];
+    ss << this->m_sim_operating_modes[this->m_sim_operating_mode];
     ss << ")";
     std::string operating_mode = ss.str();
 

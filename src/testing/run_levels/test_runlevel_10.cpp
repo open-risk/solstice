@@ -29,14 +29,14 @@ TEST_CASE("Solstice reporting", "[reporting]") {
     logger.setLevel(LOG_LEVEL);
     Poco::LogStream logstream(logger);
     std::string path = Poco::Path::current();
-    std::string configuration_dir = "Data/Local/Configurations/";
+    std::string configuration_dir = "../Data/Local/Configurations/";
     std::string configuration_file = "workflow_data_50_MOBILITY_SIM.json";
     configuration_file = path + "../" + configuration_dir + configuration_file;
     std::string exec_name = "Catch2 Test";
     char** argv[2];
     argv[0] = (char **) exec_name.c_str();
     argv[1] = (char **) configuration_file.c_str();
-    Simulation engine(OPERATING_MODE, logstream, reinterpret_cast<char **>(argv));
+    Simulation engine(OPERATING_MODE, exec_name, logstream, reinterpret_cast<char **>(argv));
     Model MC(engine, logstream);
     Model_Data MD(engine, MC, logstream);
     Scenarios S(engine, MC, logstream);
@@ -46,7 +46,7 @@ TEST_CASE("Solstice reporting", "[reporting]") {
     MC.Calculate(V, S, MD, MA, MR, logstream);
 
     std::string results_url = engine.ResultsURL();
-    results_url = path + "../Data/Local/" + results_url;
+    results_url = path + "../../Data/Local/" + results_url;
     REQUIRE(std::filesystem::exists(results_url));
     MR.Report(engine, MC, S, MD, V, MA, logstream);
     std::cout << "DONE" << std::endl;

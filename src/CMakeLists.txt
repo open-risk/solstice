@@ -205,6 +205,7 @@ set(TEST_FILES
         testing/test_config_path.cpp
         testing/test_engine.cpp
         testing/test_macro.cpp
+        testing/test_rwa.cpp
         testing/run_levels/test_runlevel_2.cpp
         testing/run_levels/test_runlevel_3.cpp
         testing/run_levels/test_runlevel_4.cpp

@@ -5,7 +5,7 @@
         "BaseAPIURL": "",
         "CorrelationURL": "Correlations/mobility_data.json",
         "Correlation_data_mode": 1,
-        "DataDir": "/home/philippos/Projects-Github/solstice/Data/Local",
+        "DataDir": "/Data/Local",
         "LoadingsURL": "Correlations/mobility_data.json",
         "ManagerDataURL": "liability_structure.json",
         "Manager_data_mode": 0,

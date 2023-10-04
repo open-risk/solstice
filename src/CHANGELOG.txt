@@ -1,0 +1,2 @@
+
+* 0.5. Starting (more) formal change log

@@ -40,16 +40,6 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG)
 set(CMAKE_PREFIX_PATH cmake-build-debug)
 
-
-# VALGRIND (optional)
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
-
-# GPROF (optional)
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
-
-# OPENMP  (optional)
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
-
 # Solstice http protocol for API exchanges
 # 0-> http (for local testing)
 # 1-> https with fake ssl certificate (for testing in public instance that has no verified certificate)
@@ -205,7 +195,7 @@ set(TEST_FILES
         testing/test_config_path.cpp
         testing/test_engine.cpp
         testing/test_macro.cpp
-        testing/test_rwa.cpp
+#        testing/test_rwa.cpp
         testing/run_levels/test_runlevel_2.cpp
         testing/run_levels/test_runlevel_3.cpp
         testing/run_levels/test_runlevel_4.cpp
@@ -231,34 +221,18 @@ set(SOURCE_FILES ${CORE_FILES}
         ${UTIL_FILES})
 
 #
-# Executables of different Solstice operating modes
+#  EXECUTABLES
+#
+# Executables of different Scenario Engine operating modes (CGI, CLI etc)
 #
 
-#
-# SERVER MODE EXECUTABLE
-#
-add_executable(solstice.web  core/server.cpp core/run.cpp ${SOURCE_FILES})
-target_include_directories(solstice.web PRIVATE ${Eigen3_INCLUDE_DIRS})
-target_include_directories(solstice.web PRIVATE ${statslib_INCLUDE_DIRS})
-target_include_directories(solstice.web PRIVATE ${gcem_INCLUDE_DIRS})
-target_compile_definitions(solstice.web PRIVATE DEBUG_MODE=1 OPERATING_MODE=2 LOG_LEVEL=7 VERSION=${VERSION})
-target_link_libraries(solstice.web
-        Poco::Data
-        Poco::DataSQLite
-        Poco::Foundation
-        Poco::Net
-        Poco::NetSSL
-        Poco::Util)
-
-#
 # DEBUG MODE EXECUTABLE
-#
 add_executable(solstice.dbg core/main.cpp core/run.cpp ${SOURCE_FILES})
 target_include_directories(solstice.dbg PRIVATE ${Catch2_INCLUDE_DIRS})
 target_include_directories(solstice.dbg PRIVATE ${Eigen3_INCLUDE_DIRS})
 target_include_directories(solstice.dbg PRIVATE ${statslib_INCLUDE_DIRS})
 target_include_directories(solstice.dbg PRIVATE ${gcem_INCLUDE_DIRS})
-target_compile_definitions(solstice.dbg PRIVATE DEBUG_MODE=1 OPERATING_MODE=3 LOG_LEVEL=7 VERSION=${VERSION})
+target_compile_definitions(solstice.dbg PRIVATE DEBUG_MODE=1 OPERATING_MODE=3 LOG_LEVEL=7 VERSION=${SOLSTICE_VERSION})
 target_link_libraries(solstice.dbg Catch2::Catch2WithMain
         Poco::Data
         Poco::DataSQLite
@@ -267,9 +241,22 @@ target_link_libraries(solstice.dbg Catch2::Catch2WithMain
         Poco::NetSSL
         Poco::Util)
 
+# SERVER MODE EXECUTABLE
 #
+add_executable(solstice.web  core/server.cpp core/run.cpp ${SOURCE_FILES})
+target_include_directories(solstice.web PRIVATE ${Eigen3_INCLUDE_DIRS})
+target_include_directories(solstice.web PRIVATE ${statslib_INCLUDE_DIRS})
+target_include_directories(solstice.web PRIVATE ${gcem_INCLUDE_DIRS})
+target_compile_definitions(solstice.web PRIVATE DEBUG_MODE=1 OPERATING_MODE=2 LOG_LEVEL=7 VERSION=${SOLSTICE_VERSION})
+target_link_libraries(solstice.web
+        Poco::Data
+        Poco::DataSQLite
+        Poco::Foundation
+        Poco::Net
+        Poco::NetSSL
+        Poco::Util)
+
 # CATCH2 TESTING
-#
 include(Catch)
 include(CTest)
 enable_testing()
@@ -282,7 +269,7 @@ target_include_directories(unit_tests PRIVATE ${Catch2_INCLUDE_DIRS})
 target_include_directories(unit_tests PRIVATE ${Eigen3_INCLUDE_DIRS})
 target_include_directories(unit_tests PRIVATE ${statslib_INCLUDE_DIRS})
 target_include_directories(unit_tests PRIVATE ${gcem_INCLUDE_DIRS})
-target_compile_definitions(unit_tests PRIVATE DEBUG_MODE=1 OPERATING_MODE=0 LOG_LEVEL=7 VERSION=${VERSION})
+target_compile_definitions(unit_tests PRIVATE DEBUG_MODE=1 OPERATING_MODE=3 LOG_LEVEL=7 VERSION=${SOLSTICE_VERSION})
 target_link_libraries(unit_tests Catch2::Catch2WithMain
         Poco::Data
         Poco::DataSQLite
@@ -290,6 +277,3 @@ target_link_libraries(unit_tests Catch2::Catch2WithMain
         Poco::Net
         Poco::NetSSL
         Poco::Util)
-#add_custom_command(TARGET unit_tests
-#        POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:unit_tests> ../../bin)

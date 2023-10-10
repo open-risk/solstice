@@ -37,5 +37,5 @@ TEST_CASE("Solstice can be instantiated", "[engine]") {
     argv[1] = (char **) configuration_file.c_str();
     Simulation engine(OPERATING_MODE, exec_name, logstream, reinterpret_cast<char **>(argv));
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
+
 }

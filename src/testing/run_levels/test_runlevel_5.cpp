@@ -42,5 +42,4 @@ TEST_CASE("Solstice run level 5 (Network Config)", "[runlevel5]") {
     Scenarios S(engine, MC, logstream);
     Network V(engine, MC, logstream);
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
 }

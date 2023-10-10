@@ -50,5 +50,4 @@ TEST_CASE("Solstice reporting", "[reporting]") {
     REQUIRE(std::filesystem::exists(results_url));
     MR.Report(engine, MC, S, MD, V, MA, logstream);
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
 }

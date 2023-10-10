@@ -45,5 +45,4 @@ TEST_CASE("Solstice model calculation", "[model]") {
     Insights MR(engine, MC, V, logstream);
     MC.Calculate(V, S, MD, MA, MR, logstream);
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
 }

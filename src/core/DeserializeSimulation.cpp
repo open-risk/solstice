@@ -78,15 +78,7 @@ void Simulation::Deserialize(const std::string &json, Poco::LogStream &logstream
         abort();
     }
 
-    //
-    // The input settings L2 section
-    //
-
     Poco::JSON::Object::Ptr Input_Set = JsonObject->getObject("input_settings");
-
-    //
-    // Data URL's
-    //
 
     try {
         m_BaseAPIURL = Input_Set->getValue<std::string>("BaseAPIURL");
@@ -100,8 +92,6 @@ void Simulation::Deserialize(const std::string &json, Poco::LogStream &logstream
         logstream.information() << BOLD(FYEL("> Warning: Problem reading Data Dir. Using default")) << std::endl;
         m_DataDir = "./";
     }
-
-    // OPTIONAL DATA SOURCES (SCENARIOS / MANAGERS)
 
     try {
         m_LiabilityDataMode = Input_Set->getValue<int>("Manager_data_mode");
@@ -161,10 +151,6 @@ void Simulation::Deserialize(const std::string &json, Poco::LogStream &logstream
         logstream.error() << BOLD(FRED("> ERROR: Problem reading transition data URL")) << std::endl;
         abort();
     }
-
-    //
-    // The output settings L2 section
-    //
 
     Poco::JSON::Object::Ptr Output_Set = JsonObject->getObject("output_settings");
     try {

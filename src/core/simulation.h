@@ -119,9 +119,9 @@ public:
         return m_sim_operating_modes;
     }
 
-    [[nodiscard]] int getRun_level() const {
+    [[nodiscard]] int RunLevel() const {
         return m_RunLevel;
-    }
+    };
 
     [[nodiscard]] const std::string &getConfigurationfile() const {
         return m_configuration_file;
@@ -150,10 +150,6 @@ public:
     [[nodiscard]] std::string ConfigurationFile() const {
         return m_configuration_file;
     }
-
-    [[nodiscard]] int RunLevel() const {
-        return m_RunLevel;
-    };
 
     [[nodiscard]] int NetworkShape() const {
         return m_NetworkShape;
@@ -227,7 +223,7 @@ public:
         return m_ResultsURL;
     };
 
-    int VerboseLevel() {
+    static int VerboseLevel() {
         return LOG_LEVEL;
     };
 

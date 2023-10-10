@@ -100,7 +100,7 @@ announce_level(int step, const std::string& step_string, int verbose_level, Poco
 
 void Simulation::Validate(Poco::LogStream &logstream) {
     // TODO Validate a configuration object
-    // Note Published Configurations are Validated according to schema
+    // Note: Published Configurations must be pre-Validated according to JSON schema
     // Validation here is meant to enforce consistent choices of parameters not captured in the
     // schema for reasons of economy or other purposes
 }

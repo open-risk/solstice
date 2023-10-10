@@ -103,15 +103,11 @@ private:
                                          "From Configuration", "None"};
 
     bool m_SingleEntityFlag{};
-
     int m_edge_size{};
-
-
     int m_Entities{};
     int m_pEntities{};
-
     bool m_Debug{};
 
 };
 
-#endif
+#endif // NETWORK_H

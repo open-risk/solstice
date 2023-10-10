@@ -19,31 +19,24 @@
 
 std::string Simulation::IdentityLog(char *command_name) {
 
-    // Get operating system details
     std::string OS_Name = Poco::Environment::osName();
     std::string OS_Version = Poco::Environment::osVersion();
     std::string OS_Arch = Poco::Environment::osArchitecture();
     std::string OS_Node_Name = Poco::Environment::nodeName();
     std::string OS_ID = Poco::Environment::nodeId();;
 
-    // Get poco library version
     unsigned int x = Poco::Environment::libraryVersion();
     std::stringstream ss;
     ss << std::hex << x;
     std::string poco_version = ss.str();
 
-    // Get eigen library version
-    // std::string eigen_version = EIGEN_WORLD_VERSION;
     ss.str("");
     ss << EIGEN_MAJOR_VERSION;
     ss << ".";
     ss << EIGEN_MINOR_VERSION;
     std::string eigen_version = ss.str();
-
-    // Get solstice version
     std::string solstice_version = my_stringify(VERSION);
 
-    // Get Solstice Operating Mode
     ss.str("");
     ss << this->m_sim_operating_mode;
     ss << " (";
@@ -53,7 +46,6 @@ std::string Simulation::IdentityLog(char *command_name) {
 
     std::string verbosity_level = std::to_string(LOG_LEVEL);
 
-    // Get Solstice Path Mode
     std::string path_mode;
     if (this->m_path_mode == 0) {
         path_mode = "Absolute Path";
@@ -63,8 +55,6 @@ std::string Simulation::IdentityLog(char *command_name) {
 
     std::string current_path = Poco::Path::current();
     std::string s(command_name);
-
-    // Construct an identity log string
     std::string logheader;
     logheader = logheader + "> Starting solstice Execution at " + get_current_time() + "\n";
     logheader = logheader + "> Operating System: " + OS_Name + "\n";
@@ -73,7 +63,6 @@ std::string Simulation::IdentityLog(char *command_name) {
     logheader = logheader + "> Node Name: " + OS_Node_Name + "\n";
     logheader = logheader + "> Node ID: " + OS_ID + "\n";
     logheader = logheader + "> Poco Version: " + poco_version + "\n";
-    // logheader = logheader + "> Armadillo Version: " + arma_version::as_string() + "\n";
     logheader = logheader + "> Eigen Version: " + eigen_version + "\n";
     logheader = logheader + "> Solstice Executable: " + s + "\n";
     logheader = logheader + "> Solstice Version: " + solstice_version + "\n";

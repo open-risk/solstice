@@ -41,5 +41,4 @@ TEST_CASE("Solstice run level 4 (Scenario Config)", "[runlevel4]") {
     Model_Data MD(engine, MC, logstream);
     Scenarios S(engine, MC, logstream);
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
 }

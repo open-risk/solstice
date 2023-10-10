@@ -40,5 +40,4 @@ TEST_CASE("Solstice run level 3 (Model Data Config)", "[runlevel3]") {
     Model MC(engine, logstream);
     Model_Data MD(engine, MC, logstream);
     std::cout << "DONE" << std::endl;
-//    INFO("Test");
 }

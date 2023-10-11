@@ -26,26 +26,28 @@ cmake_minimum_required(VERSION 3.19)
 project(solstice)
 set(SOLSTICE_VERSION_MAJOR 0)
 set(SOLSTICE_VERSION_MINOR 5)
-set(SOLSTICE_VERSION_PATCH 0)
+set(SOLSTICE_VERSION_PATCH 1)
 set(SOLSTICE_VERSION ${SOLSTICE_VERSION_MAJOR}.${SOLSTICE_VERSION_MINOR}.${SOLSTICE_VERSION_PATCH})
 
-# compiler choices. c++14 is required
+# compiler choices. c++17 is required
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -std=c++17)
 add_definitions("-std=c++17")
 
 # Create verbose output
+# TODO Production options
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG)
 set(CMAKE_PREFIX_PATH cmake-build-debug)
 
-# Solstice http protocol for API exchanges
+# Select Solstice http protocol for API exchanges
 # 0-> http (for local testing)
 # 1-> https with fake ssl certificate (for testing in public instance that has no verified certificate)
 # 2-> https with real ssl certificate (for production)
 add_definitions(-DSSL_MODE=0)
 
+# Find dependencies (installed via Conan)
 find_package(Poco REQUIRED COMPONENTS Foundation Net NetSSL Util Data DataSQLite)
 find_package(Catch2 REQUIRED)
 find_package(Eigen3 REQUIRED)
@@ -185,6 +187,7 @@ set(UTIL_FILES
         utils/utils.h
         )
 
+# TODO
 set(ALGORITHM_FILES
         )
 
@@ -220,10 +223,9 @@ set(SOURCE_FILES ${CORE_FILES}
         ${ALGORITHM_FILES}
         ${UTIL_FILES})
 
+
 #
-#  EXECUTABLES
-#
-# Executables of different Scenario Engine operating modes (CGI, CLI etc)
+# Executables of different Solstice operating modes (CGI, CLI etc)
 #
 
 # DEBUG MODE EXECUTABLE
@@ -242,7 +244,6 @@ target_link_libraries(solstice.dbg Catch2::Catch2WithMain
         Poco::Util)
 
 # SERVER MODE EXECUTABLE
-#
 add_executable(solstice.web  core/server.cpp core/run.cpp ${SOURCE_FILES})
 target_include_directories(solstice.web PRIVATE ${Eigen3_INCLUDE_DIRS})
 target_include_directories(solstice.web PRIVATE ${statslib_INCLUDE_DIRS})

@@ -1,5 +1,5 @@
 # This file is part of the Solstice distribution (https://github.com/open-risk/solstice).
-# Copyright (c) 2022 - 2023 Open Risk (https://www.openriskmanagement.com)+
+# Copyright (c) 2022 - 2024 Open Risk (https://www.openriskmanagement.com)+
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ FROM ubuntu:22.04
 
 LABEL description="Solstice: Economic Network Simulations"
 LABEL maintainer="info@openrisk.eu"
-LABEL version="0.2"
+LABEL version="0.2.1"
 LABEL author="Open Risk <www.openriskmanagement.com>"
 
 EXPOSE 8080
@@ -32,11 +32,7 @@ ENV DJANGO_ALLOWED_HOSTS localhost 127.0.0.1 [::1]
 ENV CC=gcc-12
 ENV CXX=gcc-12
 
-# Copy required files, delete local pre-existing builds
-RUN mkdir /solstice
-COPY ./src /solstice/src/
-RUN rm -rf /solstice/src/cmake-build-debug
-RUN mkdir /solstice/src/cmake-build-debug
+
 
 # Prepare the environment (gcc, cmake, conan and other Python dependencies)
 RUN apt update && apt upgrade -y && apt install python3-pip cmake build-essential -y
@@ -63,13 +59,35 @@ RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https:
 RUN apt install cmake -y
 
 # Install and configure Conan
-RUN pip install conan==2.0.10
+RUN pip install conan==2.8.1
 RUN conan profile detect --force
 ENV CONAN_SYSREQUIRES_SUDO 0
 ENV CONAN_SYSREQUIRES_MODE enabled
 
+# Copy required files, delete local pre-existing builds
+RUN mkdir /solstice
+COPY ./src/core /solstice/src/core
+COPY ./src/entity_components /solstice/src/entity_components
+COPY ./src/entity_relations /solstice/src/entity_relations
+COPY ./src/entity_types /solstice/src/entity_types
+COPY ./src/insights /solstice/src/insights
+COPY ./src/managers /solstice/src/managers
+COPY ./src/model_components /solstice/src/model_components
+COPY ./src/models /solstice/src/models
+COPY ./src/networks /solstice/src/networks
+COPY ./src/scenarios /solstice/src/scenarios
+COPY ./src/systems /solstice/src/systems
+COPY ./src/testing /solstice/src/testing
+COPY ./src/utils /solstice/src/utils
+COPY ./src/CMakeLists.txt /solstice/src/CMakeLists.txt
+COPY ./src/conanfile.txt /solstice/src/conanfile.txt
+
+# Remove build dir (just in case)
+RUN rm -rf /solstice/src/cmake-build-debug
+RUN mkdir /solstice/src/cmake-build-debug
+
 # Install C++ dependencies
-WORKDIR src
+WORKDIR /solstice/src
 RUN conan install . --output-folder=cmake-build-debug --build missing -s build_type=Debug
 
 # Build the Solstice server

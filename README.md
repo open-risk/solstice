@@ -3,13 +3,11 @@ Solstice is an economic network simulation framework
 
 ## Overview
 
-A brief overall description of the economic network simulation engine Solstice (NB: much more in the manuals / docs). 
+Solstice is an economic network simulator. The primary outcomes are quantitative analyses of the behavior of economic networks under uncertainty. It can be used both as a production tool in a portfolio / risk management context or as a research tool.  This is a brief overall description of the economic network simulation engine Solstice (NB: much more in the manuals / docs). 
 
-Solstice is an economic network simulator. The primary outcomes are quantitative analyses of the behavior of economic systems under uncertainty. It can be used both as a production tool in a portfolio / risk management context or as a research tool.
+The objective of Solstice is to provide a performant, easily usable, extensible simulation framework to support economic network analysis.
 
-The objective is to provide a performant, easily usable, extensible simulation framework to support economic network analysis.
-
-## What is included in the repository
+## What is included in this repository
 
 - Set of c++ library objects / methods implement the Solstice framework
 - Assorted auxiliary code / scripts
@@ -20,19 +18,23 @@ The objective is to provide a performant, easily usable, extensible simulation f
 ## Dependencies / Requirements
 
 * c++17
-* cmake
-* conan
-* poco++
-* eigen
-* statslib (including gcem dependency)
-* catch2
+* [cmake](https://cmake.org/)
+* [conan](https://docs.conan.io/2/installation.html) for package management
+* [poco++](https://pocoproject.org/) for various utility libraries
+* [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for numerical linear algebra functionality
+* [statslib](https://statslib.readthedocs.io/en/latest/index.html) for some statitical distribution functionality
+* [catch2](https://github.com/catchorg/Catch2) for testing
 
-Installing these dependencies is system dependent, please follow instructions as per your situation. (In the future we will have a Docker based installation that can simplify this process)
+Installing these dependencies is system dependent, please follow instructions as per your situation. 
+
+A [Docker](/Dockerfile) based installation that can simplify this process is available. 
+
+You can also directly fetch an image from [Docker Hub](https://hub.docker.com/repository/docker/openrisk/solstice/general) 
 
 ## Computational Design
 
 * Solstice is written in C++17
-* The framework is "network ready". I/O can be file based or over http. 
+* The framework is "network ready". The relevant I/O can be either file based or over http. 
 * It uses Poco++ for many of the common app functionalities
 * It uses Eigen as the core container of numerical data (vectors / tensors) and linear algebra algorithms
 

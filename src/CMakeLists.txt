@@ -16,7 +16,7 @@
 
 # Project metadata
 set(PROJECT_VENDOR "Open Risk")
-set(PROJECT_CONTACT "info@openrisk.eu")
+set(PROJECT_CONTACT "info@openriskmanagement.com")
 set(PROJECT_URL "https://github.com/open-risk/solstice")
 set(PROJECT_DESCRIPTION "Solstice is a simulation framework of economic networks")
 

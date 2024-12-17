@@ -1,35 +1,46 @@
 # Solstice
-Solstice is an economic network simulation framework
+
+**Solstice** is a economic network simulation framework
 
 ## Overview
 
-Solstice is an economic network simulator. The primary outcomes are quantitative analyses of the behavior of economic networks under uncertainty. It can be used both as a production tool in a portfolio / risk management context or as a research tool.  This is a brief overall description of the economic network simulation engine Solstice (NB: much more in the manuals / docs). 
+Solstice is an economic network simulator written in C++. The objective is to provide a performant, easily usable, extensible simulation framework to support various forms of economic network analysis.
 
-The objective of Solstice is to provide a performant, easily usable, extensible simulation framework to support economic network analysis.
+The primary outcomes are quantitative analyses of the behavior of economic networks under uncertainty. It can be used both as a production tool in a portfolio / risk management context or as a research tool. This _readme_ offers a brief overall description of the simulation engine (NB: much more is becoming available in the manuals and documentation). 
 
 ## What is included in this repository
 
-- Set of c++ library objects / methods implement the Solstice framework
+- A set of c++ library objects / methods implement the Solstice framework
 - Assorted auxiliary code / scripts
-- Documentation
+- Technical Documentation
 - Illustrative implementation of toy problems
 - Sample data sets
 
 ## Dependencies / Requirements
+
+Solstice has a number of C++ dependencies. Given the state of dependency management of C++ these are best managed with an appropriate tool such as conan.
 
 * c++17
 * [cmake](https://cmake.org/)
 * [conan](https://docs.conan.io/2/installation.html) for package management
 * [poco++](https://pocoproject.org/) for various utility libraries
 * [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for numerical linear algebra functionality
-* [statslib](https://statslib.readthedocs.io/en/latest/index.html) for some statitical distribution functionality
+* [statslib](https://statslib.readthedocs.io/en/latest/index.html) for some statistical distributions functionality
 * [catch2](https://github.com/catchorg/Catch2) for testing
 
-Installing these dependencies is system dependent, please follow instructions as per your situation. 
+### Conan
 
-A [Docker](/Dockerfile) based installation that can simplify this process is available. 
+Installing the dependencies via conan or individually is system dependent, please follow instructions as per your situation. The required dependencies and conan are stored in conanfile.txt
 
-You can also directly fetch an image from [Docker Hub](https://hub.docker.com/repository/docker/openrisk/solstice/general) 
+### vcpkg
+
+statslib is not available via vcpkg. 
+
+### Docker
+
+A [Docker](/Dockerfile) based installation that can simplify this process is also available. 
+
+You can directly fetch an image from [Docker Hub](https://hub.docker.com/repository/docker/openrisk/solstice/general) 
 
 ## Computational Design
 

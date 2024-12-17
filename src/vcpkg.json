@@ -1,0 +1,33 @@
+{
+  "name" : "solstice",
+  "version-string" : "0.5.1",
+  "builtin-baseline" : "da21e45c9ae689f63aa27f3a4ee0e64fe6b16494",
+  "dependencies" : [ {
+    "name" : "bzip2",
+    "version>=" : "1.0.8#5"
+  }, {
+    "name" : "catch2",
+    "version>=" : "3.4.0"
+  }, {
+    "name" : "eigen3",
+    "version>=" : "3.4.0#2"
+  }, {
+    "name" : "expat",
+    "version>=" : "2.5.0#3"
+  }, {
+    "name" : "pcre2",
+    "version>=" : "10.42"
+  }, {
+    "name" : "poco",
+    "version>=" : "1.12.4#4"
+  }, {
+    "name" : "vcpkg-cmake-config",
+    "version>=" : "2022-02-06#1"
+  }, {
+    "name" : "vcpkg-cmake",
+    "version>=" : "2023-05-04"
+  }, {
+    "name" : "zlib",
+    "version>=" : "1.3"
+  } ]
+}

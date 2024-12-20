@@ -14,9 +14,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from django.contrib.auth.models import User
-from django.db.models import JSONField
 from django.db import models
+from django.db.models import JSONField
 from django.urls import reverse
 from django.utils.timezone import now
 
@@ -32,7 +31,8 @@ class ResultGroup(models.Model):
 
     # The number of results include in the group
     # Must be manually augmented whenever there is a result added or deleted
-    # mirrors self.runs in Contoller/Results.py
+    # mirrors self.runs in Controller/Results.py
+
     calculation_count = models.IntegerField(default=0)
 
     # the playbook that created this result group (if available)

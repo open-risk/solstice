@@ -1,0 +1,131 @@
+{% extends 'start/generic.html' %}
+
+{% load i18n static %}
+
+{% block extrastyle %}
+    <link href="{% static 'start/css/styling.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="attachment-block clearfix">
+
+                <img class="attachment-img" src="{% static 'start/img/Solstice.png' %}" height="100"
+                     alt="Solstice Logo"/>
+                <div class="attachment-pushed">
+                    <h4 class="attachment-heading">Welcome to Solstice</h4>
+                    <div class="attachment-text">
+                        {% trans "Solstice is an open source platform that supports simulation of economic networks" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>{% trans "About" %}</h4>
+        </div>
+
+        <div class="card-body">
+            <p>Solstice is an open source platform focused on the challenge of Sustainable Portfolio Management</p>
+
+            <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing
+                tools and methodologies that improve the ability of all stakeholders to assess and report risks is an
+                important objective and Solstice aims to help carry out this process as optimally as possible.</p>
+
+            <p>Solstice is a simulation framework</p>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>How does it work?</h4>
+        </div>
+        <div class="card-body">
+            <p>Running the application creates a
+                <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and
+                testing the current release uses a self-contained sqlite database instead of a production database
+                server
+            </p>
+
+            <p>The initial functionality of Solstice focuses on integrating the following concepts</p>
+
+            <ul>
+                <li>Credit Networks
+                </li>
+                <li>Input-Output Netoworks
+                </li>
+            </ul>
+
+            <p>Once the platform is up and running a wealth of functionality is available.</p>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h4>Learn More</h4>
+        </div>
+        <div class="card-body pad table-responsive">
+            <ul>
+                <li>Solstice <a href="{% url 'start:DocList' %}">Documentation Pages</a></li>
+                <li>Sustainable Portfolio Management <a href="{% url 'start:Concepts' %}">Concepts</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>User Functionality</h4>
+        </div>
+
+        <div class="card-body">
+            <ul>
+                <li>Inspect available workflows</li>
+                <li>Execute workflows</li>
+                <li>Inspect and Export Simulation results</li>
+                <li>Create visualizations</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Administrator Functionality</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>An administrator can create workflows</li>
+                <li>Perform bulk insertion or deletion of data sets</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Developer Functionality</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Solstice is a C++ application with a pluggable architecture</li>
+                <li>Developers can customize and adapt the platform in unlimited ways</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Join the Solstice community</h3>
+        </div>
+        <div class="card-body">
+            <p>The project aims to be driven by community needs. We welcome issues, code contributions and feature
+                requests via
+                <a href="https://github.com/open-risk/Solstice">github</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

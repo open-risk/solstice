@@ -18,7 +18,7 @@
 FROM ubuntu:22.04
 
 LABEL description="Solstice: Economic Network Simulations"
-LABEL maintainer="info@openrisk.eu"
+LABEL maintainer="info@openriskmanagement.com"
 LABEL version="0.2.1"
 LABEL author="Open Risk <www.openriskmanagement.com>"
 

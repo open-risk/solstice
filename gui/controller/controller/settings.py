@@ -12,10 +12,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
+
 SECRET_KEY = 'django-insecure-gpo08fcek(z8s_d^z@*t5xxbn^5e4zl(%js8u!2q@885a265qu'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -29,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'start',
     'results_explorer',
     'workflow_explorer',
     'visualization_explorer',
@@ -93,7 +96,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INTERNAL_IPS = [
@@ -115,7 +118,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Solstice",
 
     # square logo to use for your site, must be present in static files, used for favicon and brand on top left
-    "site_logo": "static/Solstice.png",
+    "site_logo": "start/img/Solstice.png",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to Solstice",
@@ -268,7 +271,6 @@ JAZZMIN_UI_TWEAKS = {
     }
 }
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CGI_URL = "http://localhost:9090"

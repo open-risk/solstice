@@ -1,3 +1,4 @@
+requests
 Django
 django-jazzmin
 django-debug-toolbar

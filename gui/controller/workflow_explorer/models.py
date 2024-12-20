@@ -13,9 +13,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from django.contrib.auth.models import User
-from django.db.models import JSONField
 from django.db import models
+from django.db.models import JSONField
 from django.urls import reverse
 
 OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'),

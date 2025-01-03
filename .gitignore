@@ -1,0 +1,9 @@
+/.idea
+/venv
+/cmake-build-release
+/cmake-build-debug
+/Logs
+/build
+/dist
+/src/cmake-build-debug/
+/docs/html

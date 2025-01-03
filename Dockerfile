@@ -1,5 +1,5 @@
 # This file is part of the Solstice distribution (https://github.com/open-risk/solstice).
-# Copyright (c) 2022 - 2024 Open Risk (https://www.openriskmanagement.com)+
+# Copyright (c) 2022 - 2025 Open Risk (https://www.openriskmanagement.com)+
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,8 +54,9 @@ ENV CC=/usr/bin/gcc
 #RUN make install
 
 # Option 2: Get deb package from Kitware
-RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+#RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+#RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+
 RUN apt install cmake -y
 
 # Install and configure Conan
